@@ -8,6 +8,12 @@ import { Menu, X, Moon, Sun } from "lucide-react";
 
 const navItems = ["Home", "About", "Services", "Contact"];
 
+// Define text animation variants
+const textVariants = {
+  initial: { y: 0, scale: 1 },
+  hover: { y: -2, scale: 1.05 }, // Shift text up and slightly scale it
+};
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
@@ -15,10 +21,10 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState(true);
 
   // Get the current path for active link logic
-  const pathname = usePathname(); 
+  const pathname = usePathname();
 
   // --- Hydration Fix & Theme Management ---
-  
+
   // Wait for client mount
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
@@ -40,10 +46,10 @@ export default function Navbar() {
   useEffect(() => {
     // 1. Determine the clean path (e.g., '/services' -> 'services')
     const currentPath = pathname.substring(1).toLowerCase();
-    
+
     // 2. Set the active item based on the path
     let determinedActiveItem = 'Home'; // Default to Home
-    
+
     if (currentPath === '') {
       determinedActiveItem = 'Home';
     } else {
@@ -113,7 +119,7 @@ export default function Navbar() {
           </Link>
         </motion.div>
 
-        {/* ---------- Desktop Menu ----------- */}
+        {/* ---------- Desktop Menu (Updated for Text Hover) ----------- */}
         <div className="hidden md:flex items-center gap-8">
           {navItems.map((item, index) => (
             <motion.div
@@ -122,23 +128,31 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               className="relative"
+              // Set whileHover state for the container
+              whileHover="hover"
+              variants={{ initial: textVariants.initial, hover: textVariants.hover }}
             >
               <Link
                 href={getHref(item)} // 👈 Clean path
-                className={`text-lg font-medium transition-colors ${
+                className={`text-lg font-medium transition-colors inline-block ${ // inline-block is important for transform
                   activeItem === item
                     ? darkMode ? 'text-white' : 'text-black'
-                    : darkMode 
-                    ? 'text-gray-400 hover:text-gray-200' 
+                    : darkMode
+                    ? 'text-gray-400 hover:text-gray-200'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
-                // **FIXED:** Removed the preventDefault handler. Next.js Link handles routing.
                 onClick={() => setActiveItem(item)}
               >
-                {item}
+                <motion.span
+                  variants={textVariants} // Apply motion variants to the text
+                  transition={{ type: "spring", stiffness: 300, damping: 15 }} // Smooth spring animation
+                  className="inline-block"
+                >
+                  {item}
+                </motion.span>
               </Link>
-              
-              {/* Active underline */}
+
+              {/* Active underline (Persists for the current page) */}
               {activeItem === item && (
                 <motion.div
                   layoutId="activeUnderline"
@@ -146,13 +160,15 @@ export default function Navbar() {
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
-              
-              {/* Hover underline */}
+
+              {/* Hover underline (Only appears on hover for non-active items) */}
               {activeItem !== item && (
                 <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r from-amber-600 via-orange-500 to-red-600"
                   initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
+                  variants={{
+                    hover: { scaleX: 1 },
+                  }}
                   transition={{ duration: 0.3 }}
                 />
               )}
@@ -174,7 +190,7 @@ export default function Navbar() {
             {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-700" />}
           </motion.button>
 
-          <motion.div 
+          <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -247,14 +263,14 @@ export default function Navbar() {
                 className={`block text-lg py-3 px-4 font-medium transition-colors ${
                   activeItem === item
                     ? darkMode ? 'text-white' : 'text-black'
-                    : darkMode 
-                    ? 'text-gray-300 hover:text-gray-100' 
+                    : darkMode
+                    ? 'text-gray-300 hover:text-gray-100'
                     : 'text-gray-700 hover:text-gray-900'
                 }`}
               >
                 {item}
               </Link>
-              
+
               {/* Active indicator */}
               {activeItem === item && (
                 <motion.div
