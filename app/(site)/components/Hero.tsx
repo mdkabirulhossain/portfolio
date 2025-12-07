@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/purity */
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Github, Facebook } from 'lucide-react';
@@ -56,7 +57,7 @@ const HeroSection = () => {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: 'easeOut' },
+            transition: { duration: 0.6, ease: 'easeOut' as const },
         },
     };
 
@@ -75,7 +76,7 @@ const HeroSection = () => {
                 'import React from "react";',
                 '',
                 'const Home: NextPage = () => {',
-                '  return <div>Welcome</div>;',
+                '  return <div>Welcome</div>;',
                 '};'
             ],
             top: '10%',
@@ -144,8 +145,19 @@ const HeroSection = () => {
         }
     ];
 
+    // Generate random positions once using useMemo to avoid re-renders
+    const particles = useMemo(() =>
+        [...Array(15)].map(() => ({
+            initialX: Math.random() * 1000,
+            initialY: Math.random() * 1000,
+            animateY: Math.random() * 1000,
+            duration: Math.random() * 15 + 10,
+            delay: Math.random() * 5,
+        })),
+        []);
+
     return (
-        <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-gray-950 via-black to-gray-950">
+        <div className="relative min-h-screen w-full overflow-hidden bg-linear-to-br from-gray-950 via-black to-gray-950">
             {/* Animated Background Grid */}
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute inset-0" style={{
@@ -177,12 +189,12 @@ const HeroSection = () => {
                                 className="text-xl sm:text-3xl lg:text-5xl xl:text-4xl font-bold mb-8 leading-tight uppercase"
                             >
                                 {/* UPDATED: Primary Logo Text Gradient for eye-catching contrast */}
-                                <span className="bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
+                                <span className="bg-linear-to-r from-cyan-400 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
                                     I am Md. Kabirul Hossain,
                                 </span>
                                 <br />
                                 {/* UPDATED: Secondary Text Gradient */}
-                                <span className="bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">
+                                <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">
                                     MERN Stack Developer.
                                 </span>
                             </motion.h1>
@@ -195,7 +207,7 @@ const HeroSection = () => {
                                     <Button
                                         size="lg"
                                         // UPDATED: Button Gradient for strong visual appeal
-                                        className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-semibold px-8 py-6 rounded-full text-lg shadow-lg shadow-purple-500/50 transition-all"
+                                        className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-semibold px-8 py-6 rounded-full text-lg shadow-lg shadow-purple-500/50 transition-all"
                                     >
                                         Connect With Me
                                     </Button>
@@ -205,7 +217,7 @@ const HeroSection = () => {
                                     <Button
                                         size="lg"
                                         variant="outline"
-                                        className="border-2 border-white text-white hover:bg-white hover:text-black font-semibold px-8 py-6 rounded-full text-lg transition-colors"
+                                        className="border-2 border-white text-white hover:bg-white hover:text-white font-semibold px-8 py-6 rounded-full text-lg transition-colors"
                                     >
                                         My-resume
                                     </Button>
@@ -232,7 +244,7 @@ const HeroSection = () => {
                                         ease: 'linear',
                                     }}
                                     // UPDATED: Circle Border/Glow Gradient to match button
-                                    className="absolute -inset-2 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75 blur-md"
+                                    className="absolute -inset-2 rounded-full bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75 blur-md"
                                 />
 
                                 <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-gray-900 shadow-2xl">
@@ -281,25 +293,24 @@ const HeroSection = () => {
             </div>
 
             {/* Floating Particles */}
-            {[...Array(15)].map((_, i) => (
+            {particles.map((particle, i) => (
                 <motion.div
                     key={i}
-                    // UPDATED: Particle color to Cyan
                     className="absolute w-2 h-2 bg-cyan-500/40 rounded-full"
                     initial={{
-                        x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                        y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000),
+                        x: particle.initialX,
+                        y: particle.initialY,
                         opacity: 0,
                     }}
                     animate={{
-                        y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1000)],
+                        y: [null, particle.animateY],
                         opacity: [0, 0.8, 0],
                     }}
                     transition={{
-                        duration: Math.random() * 15 + 10,
+                        duration: particle.duration,
                         repeat: Infinity,
                         ease: 'linear',
-                        delay: Math.random() * 5,
+                        delay: particle.delay,
                     }}
                 />
             ))}

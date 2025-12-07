@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link"; 
-import { usePathname } from 'next/navigation'; 
+import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 
@@ -13,6 +13,10 @@ const textVariants = {
   initial: { y: 0, scale: 1 },
   hover: { y: -2, scale: 1.05 }, // Shift text up and slightly scale it
 };
+
+// --- NEW GRADIENT CLASS ---
+const PRIMARY_GRADIENT_R = "from-sky-400 to-blue-500";
+const PRIMARY_GRADIENT_B = "from-sky-400 to-blue-500"; // Changed to use the same colors
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -44,7 +48,7 @@ export default function Navbar() {
 
   // --- Active Link Logic FIX ---
   useEffect(() => {
-    
+
     const currentPath = pathname.substring(1).toLowerCase();
 
     let determinedActiveItem = 'Home'; // Default to Home
@@ -67,13 +71,13 @@ export default function Navbar() {
     return slug === 'home' ? '/' : `/${slug}`;
   };
 
-  // --- Hydration Placeholder ---
+  // --- Hydration Placeholder (UPDATED GRADIENT) ---
   if (!mounted) {
     return (
       <nav className="w-full bg-black fixed top-0 left-0 z-50 shadow-lg border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
           <div className="text-2xl font-bold">
-            <span className="bg-linear-to-r from-amber-600 via-orange-500 to-red-600 bg-clip-text text-transparent">
+            <span className={`bg-linear-to-r ${PRIMARY_GRADIENT_R} bg-clip-text text-transparent`}>
               MyLogo
             </span>
           </div>
@@ -100,19 +104,19 @@ export default function Navbar() {
     );
   }
 
-  // --- Rendered Navbar ---
+  // --- Rendered Navbar (UPDATED GRADIENTS) ---
   return (
     <nav className={`w-full ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} fixed top-0 left-0 z-50 shadow-lg border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'}`}>
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
 
-        {/* ---------- Logo ----------- */}
+        {/* ---------- Logo (UPDATED GRADIENT) ----------- */}
         <motion.div
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           className="text-2xl font-bold cursor-pointer"
         >
           <Link href="/">
-            <span className="bg-linear-to-r from-amber-600 via-orange-500 to-red-600 bg-clip-text text-transparent">
+            <span className={`bg-linear-to-r ${PRIMARY_GRADIENT_R} bg-clip-text text-transparent`}>
               MyLogo
             </span>
           </Link>
@@ -151,19 +155,19 @@ export default function Navbar() {
                 </motion.span>
               </Link>
 
-              {/* Active underline (Persists for the current page) */}
+              {/* Active underline (Persists for the current page) (UPDATED GRADIENT) */}
               {activeItem === item && (
                 <motion.div
                   layoutId="activeUnderline"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r from-amber-600 via-orange-500 to-red-600"
+                  className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r ${PRIMARY_GRADIENT_R}`}
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
 
-              {/* Hover underline (Only appears on hover for non-active items) */}
+              {/* Hover underline (Only appears on hover for non-active items) (UPDATED GRADIENT) */}
               {activeItem !== item && (
                 <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r from-amber-600 via-orange-500 to-red-600"
+                  className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r ${PRIMARY_GRADIENT_R}`}
                   initial={{ scaleX: 0 }}
                   variants={{
                     hover: { scaleX: 1 },
@@ -201,8 +205,9 @@ export default function Navbar() {
                 whileHover="hover"
                 initial="initial"
               >
+                {/* Contact Button Hover Background (UPDATED GRADIENT) */}
                 <motion.div
-                  className="absolute inset-0 bg-linear-to-r from-amber-600 via-orange-500 to-red-600"
+                  className={`absolute inset-0 bg-linear-to-r ${PRIMARY_GRADIENT_R}`}
                   variants={{
                     initial: { x: "-100%" },
                     hover: { x: "0%" }
@@ -270,11 +275,11 @@ export default function Navbar() {
                 {item}
               </Link>
 
-              {/* Active indicator */}
+              {/* Active indicator (Mobile) (UPDATED GRADIENT) */}
               {activeItem === item && (
                 <motion.div
                   layoutId="activeMobileUnderline"
-                  className="absolute left-0 top-0 bottom-0 w-1 bg-linear-to-b from-amber-600 via-orange-500 to-red-600 rounded-r"
+                  className={`absolute left-0 top-0 bottom-0 w-1 bg-linear-to-b ${PRIMARY_GRADIENT_B} rounded-r`}
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}
@@ -303,8 +308,9 @@ export default function Navbar() {
                   whileHover="hover"
                   initial="initial"
                 >
+                  {/* Mobile Contact Button Hover Background (UPDATED GRADIENT) */}
                   <motion.div
-                    className="absolute inset-0 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"
+                    className={`absolute inset-0 bg-linear-to-r ${PRIMARY_GRADIENT_R}`}
                     variants={{
                       initial: { x: "-100%" },
                       hover: { x: "0%" }
