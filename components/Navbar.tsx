@@ -1,343 +1,68 @@
-// "use client";
-
-// import { useState, useEffect } from "react";
-// import { motion } from "framer-motion";
-// import { Menu, X, Moon, Sun } from "lucide-react";
-
-// const navItems = ["Home", "About", "Services", "Contact"];
-
-// interface LinkProps {
-//   href: string;
-//   children: React.ReactNode;
-//   className?: string;
-//   onClick?: (e: React.MouseEvent) => void;
-// }
-
-// const Link: React.FC<LinkProps> = ({ href, children, className, onClick }) => (
-//   <a href={href} className={className} onClick={onClick}>
-//     {children}
-//   </a>
-// );
-
-// export default function Navbar() {
-//   const [open, setOpen] = useState(false);
-//   const [activeItem, setActiveItem] = useState("Home");
-//   const [mounted, setMounted] = useState(false);
-
-//    // Fix hydration error - wait for client mount
-//   useEffect(() => {
-//     const timer = setTimeout(() => setMounted(true), 0);
-//     return () => clearTimeout(timer);
-//   }, []);
-
-//   const [darkMode, setDarkMode] = useState(true);
-
-//   useEffect(() => {
-//     // Set dark mode on initial load
-//     document.body.style.backgroundColor = darkMode ? '#000000' : '#ffffff';
-//   }, [darkMode]);
-
-//   const toggleTheme = () => {
-//     setDarkMode(!darkMode);
-//     document.body.style.backgroundColor = !darkMode ? '#000000' : '#ffffff';
-//   };
-
-//   // Prevent hydration mismatch
-//   if (!mounted) {
-//     return (
-//       <nav className="w-full bg-black fixed top-0 left-0 z-50 shadow-lg border-b border-gray-800">
-//         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-//           <div className="text-2xl font-bold">
-//             <span className="bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-//               MyLogo
-//             </span>
-//           </div>
-//           <div className="hidden md:flex items-center gap-8">
-//             {navItems.map((item) => (
-//               <div key={item} className="text-lg font-medium text-gray-400">
-//                 {item}
-//               </div>
-//             ))}
-//           </div>
-//           <div className="hidden md:flex items-center gap-4">
-//             <div className="p-2 rounded-full bg-gray-800">
-//               <Sun className="w-5 h-5 text-yellow-400" />
-//             </div>
-//             <div className="px-6 py-2 rounded-lg font-semibold bg-gray-800">
-//               <span className="text-white">Contact Us</span>
-//             </div>
-//           </div>
-//           <div className="md:hidden">
-//             <Menu className="w-7 h-7 text-white" />
-//           </div>
-//         </div>
-//       </nav>
-//     );
-//   }
-
-//   return (
-//     <nav className={`w-full ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} fixed top-0 left-0 z-50 shadow-lg border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'}`}>
-//       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
-
-//         {/* ---------- Logo ----------- */}
-//         <motion.div
-//           whileHover={{ scale: 1.08 }}
-//           whileTap={{ scale: 0.95 }}
-//           className="text-2xl font-bold cursor-pointer"
-//         >
-//           <Link href="/">
-//             <span className="bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-//               MyLogo
-//             </span>
-//           </Link>
-//         </motion.div>
-
-//         {/* ---------- Desktop Menu ----------- */}
-//         <div className="hidden md:flex items-center gap-8">
-//           {navItems.map((item, index) => (
-//             <motion.div
-//               key={item}
-//               initial={{ opacity: 0, y: -20 }}
-//               animate={{ opacity: 1, y: 0 }}
-//               transition={{ delay: index * 0.1 }}
-//               className="relative"
-//             >
-//               <Link
-//                 href={`#${item.toLowerCase()}`}
-//                 className={`text-lg font-medium transition-colors ${
-//                   activeItem === item
-//                     ? darkMode ? 'text-white' : 'text-black'
-//                     : darkMode 
-//                     ? 'text-gray-400 hover:text-gray-200' 
-//                     : 'text-gray-600 hover:text-gray-900'
-//                 }`}
-//                 onClick={(e) => {
-//                   e.preventDefault();
-//                   setActiveItem(item);
-//                 }}
-//               >
-//                 {item}
-//               </Link>
-              
-//               {/* Active underline */}
-//               {activeItem === item && (
-//                 <motion.div
-//                   layoutId="activeUnderline"
-//                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"
-//                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
-//                 />
-//               )}
-              
-//               {/* Hover underline */}
-//               {activeItem !== item && (
-//                 <motion.div
-//                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"
-//                   initial={{ scaleX: 0 }}
-//                   whileHover={{ scaleX: 1 }}
-//                   transition={{ duration: 0.3 }}
-//                 />
-//               )}
-//             </motion.div>
-//           ))}
-//         </div>
-
-//         {/* ---------- Right side buttons (Desktop) ----------- */}
-//         <div className="hidden md:flex items-center gap-4">
-//           <motion.button
-//             whileHover={{ scale: 1.1, rotate: 180 }}
-//             whileTap={{ scale: 0.9 }}
-//             transition={{ duration: 0.3 }}
-//             onClick={toggleTheme}
-//             className={`p-2 rounded-full ${
-//               darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'
-//             }`}
-//           >
-//             {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-700" />}
-//           </motion.button>
-
-//           <motion.div 
-//             whileHover={{ scale: 1.05 }}
-//             whileTap={{ scale: 0.95 }}
-//           >
-//             <Link href="/contact">
-//               <motion.div
-//                 className={`relative px-6 py-2 rounded-lg font-semibold overflow-hidden ${
-//                   darkMode ? 'bg-gray-800' : 'bg-gray-200'
-//                 }`}
-//                 whileHover="hover"
-//                 initial="initial"
-//               >
-//                 <motion.div
-//                   className="absolute inset-0 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"
-//                   variants={{
-//                     initial: { x: "-100%" },
-//                     hover: { x: "0%" }
-//                   }}
-//                   transition={{ duration: 0.3 }}
-//                 />
-//                 <span className={`relative z-10 font-semibold ${
-//                   darkMode ? 'text-white' : 'text-black'
-//                 }`}>
-//                   Contact Us
-//                 </span>
-//               </motion.div>
-//             </Link>
-//           </motion.div>
-//         </div>
-
-//         {/* ---------- Mobile Menu Icon ----------- */}
-//         <div className="md:hidden">
-//           <motion.button
-//             whileTap={{ scale: 0.9 }}
-//             onClick={() => setOpen(!open)}
-//             className={`p-2 rounded-lg ${
-//               darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'
-//             }`}
-//           >
-//             {open ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-//           </motion.button>
-//         </div>
-//       </div>
-
-//       {/* ---------- Mobile Menu Dropdown ----------- */}
-//       {open && (
-//         <motion.div
-//           initial={{ height: 0, opacity: 0 }}
-//           animate={{ height: "auto", opacity: 1 }}
-//           exit={{ height: 0, opacity: 0 }}
-//           transition={{ duration: 0.3 }}
-//           className={`md:hidden ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} px-4 pb-4 space-y-2 border-t ${
-//             darkMode ? 'border-gray-800' : 'border-gray-200'
-//           }`}
-//         >
-//           {navItems.map((item, index) => (
-//             <motion.div
-//               key={item}
-//               initial={{ x: -20, opacity: 0 }}
-//               animate={{ x: 0, opacity: 1 }}
-//               transition={{ delay: index * 0.1 }}
-//               whileTap={{ scale: 0.98 }}
-//               className="relative"
-//             >
-//               <Link
-//                 href={`#${item.toLowerCase()}`}
-//                 onClick={(e) => {
-//                   e.preventDefault();
-//                   setActiveItem(item);
-//                   setOpen(false);
-//                 }}
-//                 className={`block text-lg py-3 px-4 font-medium transition-colors ${
-//                   activeItem === item
-//                     ? darkMode ? 'text-white' : 'text-black'
-//                     : darkMode 
-//                     ? 'text-gray-300 hover:text-gray-100' 
-//                     : 'text-gray-700 hover:text-gray-900'
-//                 }`}
-//               >
-//                 {item}
-//               </Link>
-              
-//               {/* Active indicator */}
-//               {activeItem === item && (
-//                 <motion.div
-//                   layoutId="activeMobileUnderline"
-//                   className="absolute left-0 top-0 bottom-0 w-1 bg-linear-to-b from-blue-500 via-purple-500 to-pink-500 rounded-r"
-//                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
-//                 />
-//               )}
-//             </motion.div>
-//           ))}
-
-//           <div className="flex items-center justify-between pt-4 border-t border-gray-700">
-//             <motion.button
-//               whileHover={{ scale: 1.1, rotate: 180 }}
-//               whileTap={{ scale: 0.9 }}
-//               transition={{ duration: 0.3 }}
-//               onClick={toggleTheme}
-//               className={`p-2 rounded-full ${
-//                 darkMode ? 'bg-gray-800' : 'bg-gray-200'
-//               }`}
-//             >
-//               {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-700" />}
-//             </motion.button>
-
-//             <motion.div whileTap={{ scale: 0.95 }}>
-//               <Link href="/contact">
-//                 <motion.div
-//                   className={`relative px-6 py-2 rounded-lg font-semibold overflow-hidden ${
-//                     darkMode ? 'bg-gray-800' : 'bg-gray-200'
-//                   }`}
-//                   whileHover="hover"
-//                   initial="initial"
-//                 >
-//                   <motion.div
-//                     className="absolute inset-0 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500"
-//                     variants={{
-//                       initial: { x: "-100%" },
-//                       hover: { x: "0%" }
-//                     }}
-//                     transition={{ duration: 0.3 }}
-//                   />
-//                   <span className={`relative z-10 font-semibold ${
-//                     darkMode ? 'text-white' : 'text-black'
-//                   }`}>
-//                     Contact Us
-//                   </span>
-//                 </motion.div>
-//               </Link>
-//             </motion.div>
-//           </div>
-//         </motion.div>
-//       )}
-//     </nav>
-//   );
-// }
-
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link"; // 👈 Use Next.js Link
+import { usePathname } from 'next/navigation'; // 👈 Use for Active State logic
 import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 
 const navItems = ["Home", "About", "Services", "Contact"];
 
-interface LinkProps {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-  onClick?: (e: React.MouseEvent) => void;
-}
-
-const Link: React.FC<LinkProps> = ({ href, children, className, onClick }) => (
-  <a href={href} className={className} onClick={onClick}>
-    {children}
-  </a>
-);
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
   const [mounted, setMounted] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
-   // Fix hydration error - wait for client mount
+  // Get the current path for active link logic
+  const pathname = usePathname(); 
+
+  // --- Hydration Fix & Theme Management ---
+  
+  // Wait for client mount
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
-  const [darkMode, setDarkMode] = useState(true);
-
+  // Set dark mode on initial load
   useEffect(() => {
-    // Set dark mode on initial load
     document.body.style.backgroundColor = darkMode ? '#000000' : '#ffffff';
   }, [darkMode]);
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
+    // Explicitly update background immediately
     document.body.style.backgroundColor = !darkMode ? '#000000' : '#ffffff';
   };
 
-  // Prevent hydration mismatch
+  // --- Active Link Logic FIX ---
+  useEffect(() => {
+    // 1. Determine the clean path (e.g., '/services' -> 'services')
+    const currentPath = pathname.substring(1).toLowerCase();
+    
+    // 2. Set the active item based on the path
+    let determinedActiveItem = 'Home'; // Default to Home
+    
+    if (currentPath === '') {
+      determinedActiveItem = 'Home';
+    } else {
+      const foundItem = navItems.find(item => item.toLowerCase() === currentPath);
+      if (foundItem) {
+        determinedActiveItem = foundItem;
+      }
+    }
+    queueMicrotask(() => setActiveItem(determinedActiveItem));
+
+  }, [pathname]); // Re-run when the URL path changes
+
+  // Helper function to get the correct href path
+  const getHref = (item: string) => {
+    const slug = item.toLowerCase();
+    return slug === 'home' ? '/' : `/${slug}`;
+  };
+
+  // --- Hydration Placeholder ---
   if (!mounted) {
     return (
       <nav className="w-full bg-black fixed top-0 left-0 z-50 shadow-lg border-b border-gray-800">
@@ -370,6 +95,7 @@ export default function Navbar() {
     );
   }
 
+  // --- Rendered Navbar ---
   return (
     <nav className={`w-full ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} fixed top-0 left-0 z-50 shadow-lg border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'}`}>
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
@@ -398,7 +124,7 @@ export default function Navbar() {
               className="relative"
             >
               <Link
-                href={`#${item.toLowerCase()}`}
+                href={getHref(item)} // 👈 Clean path
                 className={`text-lg font-medium transition-colors ${
                   activeItem === item
                     ? darkMode ? 'text-white' : 'text-black'
@@ -406,10 +132,8 @@ export default function Navbar() {
                     ? 'text-gray-400 hover:text-gray-200' 
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActiveItem(item);
-                }}
+                // **FIXED:** Removed the preventDefault handler. Next.js Link handles routing.
+                onClick={() => setActiveItem(item)}
               >
                 {item}
               </Link>
@@ -515,11 +239,10 @@ export default function Navbar() {
               className="relative"
             >
               <Link
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActiveItem(item);
-                  setOpen(false);
+                href={getHref(item)} // 👈 Clean path
+                onClick={() => {
+                  setActiveItem(item); // Set active state
+                  setOpen(false); // Close menu
                 }}
                 className={`block text-lg py-3 px-4 font-medium transition-colors ${
                   activeItem === item
