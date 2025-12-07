@@ -1,12 +1,14 @@
 /* eslint-disable react-hooks/purity */
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react'; // 👈 ADD useState, useEffect
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Github, Facebook } from 'lucide-react';
 import Image from 'next/image';
 import kabiru from '@/public/images/Kabirul.png'
+import Link from 'next/link';
+
 
 const CodeSnippet = ({ code, top, left, right, bottom, delay }: {
     code: string[];
@@ -41,6 +43,15 @@ const CodeSnippet = ({ code, top, left, right, bottom, delay }: {
 );
 
 const HeroSection = () => {
+    // 1. ADD: State to track if the component has mounted
+    const [mounted, setMounted] = useState(false);
+
+    // 2. ADD: Effect to set mounted to true after the first client-side render (hydration)
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // ... (rest of your variants and codeSnippets remain the same)
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -102,7 +113,7 @@ const HeroSection = () => {
                 ' skills: string[];',
                 '}'
             ],
-            top: '70%',
+            top: '60%',
             left: '5%',
             delay: 0.9
         },
@@ -163,7 +174,7 @@ const HeroSection = () => {
                 <div className="absolute inset-0" style={{
                     // UPDATED: Grid lines color to Cyan
                     backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(6, 182, 212, 0.15) 1px, transparent 1px)`,
+                               linear-gradient(90deg, rgba(6, 182, 212, 0.15) 1px, transparent 1px)`,
                     backgroundSize: '40px 40px',
                 }} />
             </div>
@@ -207,20 +218,22 @@ const HeroSection = () => {
                                     <Button
                                         size="lg"
                                         // UPDATED: Button Gradient for strong visual appeal
-                                        className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-semibold px-8 py-6 rounded-full text-lg shadow-lg shadow-purple-500/50 transition-all"
+                                        className="bg-linear-to-r cursor-pointer from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-semibold px-8 py-6 rounded-full text-lg shadow-lg shadow-purple-500/50 transition-all"
                                     >
                                         Connect With Me
                                     </Button>
                                 </motion.div>
 
                                 <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
-                                    <Button
-                                        size="lg"
-                                        variant="outline"
-                                        className="border-2 border-white text-white hover:bg-white hover:text-white font-semibold px-8 py-6 rounded-full text-lg transition-colors"
-                                    >
-                                        My-resume
-                                    </Button>
+                                    <Link href="/kabirul.pdf" download target="_blank">
+                                        <Button
+                                            size="lg"
+                                            variant="outline"
+                                            className="border-2 cursor-pointer border-white text-white hover:bg-white hover:text-white font-semibold px-8 py-6 rounded-full text-lg transition-colors"
+                                        >
+                                            My Resume
+                                        </Button>
+                                    </Link>
                                 </motion.div>
                             </motion.div>
                         </motion.div>
@@ -263,37 +276,55 @@ const HeroSection = () => {
 
                             {/* Social Icons Below Circle */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 1.2 }}
-                                className="flex gap-6"
-                            >
-                                {[
-                                    // UPDATED: Icon Hover colors to match Cyan/Indigo theme
-                                    { icon: Linkedin, label: 'LinkedIn', color: 'hover:bg-cyan-500' },
-                                    { icon: Github, label: 'GitHub', color: 'hover:bg-indigo-500' },
-                                    { icon: Facebook, label: 'Facebook', color: 'hover:bg-sky-500' },
-                                ].map((social) => (
-                                    <motion.button
-                                        key={social.label}
-                                        whileHover={{ scale: 1.15, y: -5 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        transition={{ duration: 0.2 }}
-                                        // UPDATED: Icon default background to a dark shade of cyan/indigo
-                                        className={`w-14 h-14 rounded-full bg-cyan-900/50 text-white flex items-center justify-center shadow-xl ${social.color} hover:text-white transition-all duration-300`}
-                                        aria-label={social.label}
-                                    >
-                                        <social.icon className="w-7 h-7" />
-                                    </motion.button>
-                                ))}
-                            </motion.div>
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 1.2 }}
+    className="flex gap-6"
+>
+    {[
+        {
+            icon: Linkedin,
+            label: "LinkedIn",
+            color: "hover:bg-cyan-500",
+            link: "https://www.linkedin.com/in/md-kabirul-hossain-0a63351ab",
+        },
+        {
+            icon: Github,
+            label: "GitHub",
+            color: "hover:bg-indigo-500",
+            link: "https://github.com/mdkabirulhossain",
+        },
+        {
+            icon: Facebook,
+            label: "Facebook",
+            color: "hover:bg-sky-500",
+            link: "https://www.facebook.com/mdkabirulhossain.joy",
+        },
+    ].map((social) => (
+        <motion.a
+            key={social.label}
+            href={social.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.15, y: -5 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className={`w-14 h-14 cursor-pointer rounded-full bg-cyan-900/50 text-white flex items-center justify-center shadow-xl ${social.color} hover:text-white transition-all duration-300`}
+            aria-label={social.label}
+        >
+            <social.icon className="w-7 h-7" />
+        </motion.a>
+    ))}
+</motion.div>
+
                         </motion.div>
                     </div>
                 </div>
             </div>
 
             {/* Floating Particles */}
-            {particles.map((particle, i) => (
+            {/* 3. FIX: Only render particles after component has mounted on the client */}
+            {mounted && particles.map((particle, i) => (
                 <motion.div
                     key={i}
                     className="absolute w-2 h-2 bg-cyan-500/40 rounded-full"
