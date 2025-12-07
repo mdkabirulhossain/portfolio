@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link"; // 👈 Use Next.js Link
-import { usePathname } from 'next/navigation'; // 👈 Use for Active State logic
+import Link from "next/link"; 
+import { usePathname } from 'next/navigation'; 
 import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 
@@ -44,10 +44,9 @@ export default function Navbar() {
 
   // --- Active Link Logic FIX ---
   useEffect(() => {
-    // 1. Determine the clean path (e.g., '/services' -> 'services')
+    
     const currentPath = pathname.substring(1).toLowerCase();
 
-    // 2. Set the active item based on the path
     let determinedActiveItem = 'Home'; // Default to Home
 
     if (currentPath === '') {
