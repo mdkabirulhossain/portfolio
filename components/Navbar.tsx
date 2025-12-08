@@ -78,7 +78,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
           <div className="text-2xl font-bold">
             <span className={`bg-linear-to-r ${PRIMARY_GRADIENT_R} bg-clip-text text-transparent`}>
-              MyLogo
+              Kabirul
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8">
