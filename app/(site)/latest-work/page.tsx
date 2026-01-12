@@ -35,16 +35,33 @@ const modalVariants = {
   },
 };
 
+interface Project {
+  id: number;
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  image: string;
+  category: string;
+  technologies: string[];
+  liveDemo: string;
+  github: string;
+  date: string;
+  duration: string;
+  featured: boolean;
+  gradient: string;
+  highlights: string[];
+}
+
 const LatestProjects = () => {
   const { theme } = useTheme();
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState("all");
   const [showAll, setShowAll] = useState(false);
 
   /* ----------------------------------------------------
      PROJECTS DATA - CUSTOMIZE THIS!
   ---------------------------------------------------- */
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: "E-Commerce Platform",
