@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 const navItems = ["Home", "About", "Services", "Contact"];
 
@@ -22,7 +23,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Home");
   const [mounted, setMounted] = useState(false);
-  const [darkMode, setDarkMode] = useState(true);
+  // const [darkMode, setDarkMode] = useState(true);
+  const { theme, setTheme } = useTheme();
+  const darkMode = theme === 'dark';
 
   // Get the current path for active link logic
   const pathname = usePathname();
@@ -36,15 +39,15 @@ export default function Navbar() {
   }, []);
 
   // Set dark mode on initial load
-  useEffect(() => {
-    document.body.style.backgroundColor = darkMode ? '#000000' : '#ffffff';
-  }, [darkMode]);
+  // useEffect(() => {
+  //   document.body.style.backgroundColor = darkMode ? '#000000' : '#ffffff';
+  // }, [darkMode]);
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    // Explicitly update background immediately
-    document.body.style.backgroundColor = !darkMode ? '#000000' : '#ffffff';
-  };
+  // const toggleTheme = () => {
+  //   setDarkMode(!darkMode);
+  //   // Explicitly update background immediately
+  //   document.body.style.backgroundColor = !darkMode ? '#000000' : '#ffffff';
+  // };
 
   // --- Active Link Logic FIX ---
   useEffect(() => {
@@ -141,9 +144,9 @@ export default function Navbar() {
                   activeItem === item
                     ? darkMode ? 'text-white' : 'text-black'
                     : darkMode
-                    ? 'text-gray-400 hover:text-gray-200'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
+                      ? 'text-gray-400 hover:text-gray-200'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
                 onClick={() => setActiveItem(item)}
               >
                 <motion.span
@@ -185,10 +188,9 @@ export default function Navbar() {
             whileHover={{ scale: 1.1, rotate: 180 }}
             whileTap={{ scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            onClick={toggleTheme}
-            className={`p-2 rounded-full ${
-              darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'
-            }`}
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className={`p-2 rounded-full ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-gray-200 hover:bg-gray-300'
+              }`}
           >
             {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-700" />}
           </motion.button>
@@ -199,9 +201,8 @@ export default function Navbar() {
           >
             <Link href="/contact">
               <motion.div
-                className={`relative px-6 py-2 rounded-lg font-semibold overflow-hidden ${
-                  darkMode ? 'bg-gray-800' : 'bg-gray-200'
-                }`}
+                className={`relative px-6 py-2 rounded-lg font-semibold overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-gray-200'
+                  }`}
                 whileHover="hover"
                 initial="initial"
               >
@@ -214,9 +215,8 @@ export default function Navbar() {
                   }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className={`relative z-10 font-semibold ${
-                  darkMode ? 'text-white' : 'text-black'
-                }`}>
+                <span className={`relative z-10 font-semibold ${darkMode ? 'text-white' : 'text-black'
+                  }`}>
                   Contact Us
                 </span>
               </motion.div>
@@ -229,9 +229,8 @@ export default function Navbar() {
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => setOpen(!open)}
-            className={`p-2 rounded-lg ${
-              darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'
-            }`}
+            className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-200'
+              }`}
           >
             {open ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </motion.button>
@@ -245,9 +244,8 @@ export default function Navbar() {
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className={`md:hidden ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} px-4 pb-4 space-y-2 border-t ${
-            darkMode ? 'border-gray-800' : 'border-gray-200'
-          }`}
+          className={`md:hidden ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} px-4 pb-4 space-y-2 border-t ${darkMode ? 'border-gray-800' : 'border-gray-200'
+            }`}
         >
           {navItems.map((item, index) => (
             <motion.div
@@ -264,13 +262,12 @@ export default function Navbar() {
                   setActiveItem(item); // Set active state
                   setOpen(false); // Close menu
                 }}
-                className={`block text-lg py-3 px-4 font-medium transition-colors ${
-                  activeItem === item
+                className={`block text-lg py-3 px-4 font-medium transition-colors ${activeItem === item
                     ? darkMode ? 'text-white' : 'text-black'
                     : darkMode
-                    ? 'text-gray-300 hover:text-gray-100'
-                    : 'text-gray-700 hover:text-gray-900'
-                }`}
+                      ? 'text-gray-300 hover:text-gray-100'
+                      : 'text-gray-700 hover:text-gray-900'
+                  }`}
               >
                 {item}
               </Link>
@@ -291,10 +288,9 @@ export default function Navbar() {
               whileHover={{ scale: 1.1, rotate: 180 }}
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.3 }}
-              onClick={toggleTheme}
-              className={`p-2 rounded-full ${
-                darkMode ? 'bg-gray-800' : 'bg-gray-200'
-              }`}
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className={`p-2 rounded-full ${darkMode ? 'bg-gray-800' : 'bg-gray-200'
+                }`}
             >
               {darkMode ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-gray-700" />}
             </motion.button>
@@ -302,9 +298,8 @@ export default function Navbar() {
             <motion.div whileTap={{ scale: 0.95 }}>
               <Link href="/contact">
                 <motion.div
-                  className={`relative px-6 py-2 rounded-lg font-semibold overflow-hidden ${
-                    darkMode ? 'bg-gray-800' : 'bg-gray-200'
-                  }`}
+                  className={`relative px-6 py-2 rounded-lg font-semibold overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-gray-200'
+                    }`}
                   whileHover="hover"
                   initial="initial"
                 >
@@ -317,9 +312,8 @@ export default function Navbar() {
                     }}
                     transition={{ duration: 0.3 }}
                   />
-                  <span className={`relative z-10 font-semibold ${
-                    darkMode ? 'text-white' : 'text-black'
-                  }`}>
+                  <span className={`relative z-10 font-semibold ${darkMode ? 'text-white' : 'text-black'
+                    }`}>
                     Contact Us
                   </span>
                 </motion.div>

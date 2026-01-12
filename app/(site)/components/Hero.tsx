@@ -8,6 +8,7 @@ import { Linkedin, Github, Facebook } from 'lucide-react';
 import Image from 'next/image';
 import kabiru from '@/public/images/Kabirul.png'
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
 
 
 const CodeSnippet = ({ code, top, left, right, bottom, delay }: {
@@ -45,6 +46,8 @@ const CodeSnippet = ({ code, top, left, right, bottom, delay }: {
 const HeroSection = () => {
     // 1. ADD: State to track if the component has mounted
     const [mounted, setMounted] = useState(false);
+    const { theme } = useTheme();
+
 
     // 2. ADD: Effect to set mounted to true after the first client-side render (hydration)
     useEffect(() => {
@@ -168,8 +171,7 @@ const HeroSection = () => {
         []);
 
     return (
-        <div className="relative min-h-screen w-full overflow-hidden bg-linear-to-br from-gray-950 via-black to-gray-950">
-            {/* Animated Background Grid */}
+        <div className={`relative min-h-screen w-full overflow-hidden ${theme !== 'light' ? 'bg-linear-to-br from-gray-950 via-black to-gray-950' : 'bg-linear-to-br from-gray-50 via-white to-gray-100'}`}>
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute inset-0" style={{
                     // UPDATED: Grid lines color to Cyan
@@ -276,46 +278,46 @@ const HeroSection = () => {
 
                             {/* Social Icons Below Circle */}
                             <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: 1.2 }}
-    className="flex gap-6"
->
-    {[
-        {
-            icon: Linkedin,
-            label: "LinkedIn",
-            color: "hover:bg-cyan-500",
-            link: "https://www.linkedin.com/in/md-kabirul-hossain-0a63351ab",
-        },
-        {
-            icon: Github,
-            label: "GitHub",
-            color: "hover:bg-indigo-500",
-            link: "https://github.com/mdkabirulhossain",
-        },
-        {
-            icon: Facebook,
-            label: "Facebook",
-            color: "hover:bg-sky-500",
-            link: "https://www.facebook.com/mdkabirulhossain.joy",
-        },
-    ].map((social) => (
-        <motion.a
-            key={social.label}
-            href={social.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.15, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className={`w-14 h-14 cursor-pointer rounded-full bg-cyan-900/50 text-white flex items-center justify-center shadow-xl ${social.color} hover:text-white transition-all duration-300`}
-            aria-label={social.label}
-        >
-            <social.icon className="w-7 h-7" />
-        </motion.a>
-    ))}
-</motion.div>
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 1.2 }}
+                                className="flex gap-6"
+                            >
+                                {[
+                                    {
+                                        icon: Linkedin,
+                                        label: "LinkedIn",
+                                        color: "hover:bg-cyan-500",
+                                        link: "https://www.linkedin.com/in/md-kabirul-hossain-0a63351ab",
+                                    },
+                                    {
+                                        icon: Github,
+                                        label: "GitHub",
+                                        color: "hover:bg-indigo-500",
+                                        link: "https://github.com/mdkabirulhossain",
+                                    },
+                                    {
+                                        icon: Facebook,
+                                        label: "Facebook",
+                                        color: "hover:bg-sky-500",
+                                        link: "https://www.facebook.com/mdkabirulhossain.joy",
+                                    },
+                                ].map((social) => (
+                                    <motion.a
+                                        key={social.label}
+                                        href={social.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        whileHover={{ scale: 1.15, y: -5 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        transition={{ duration: 0.2 }}
+                                        className={`w-14 h-14 cursor-pointer rounded-full bg-cyan-900/50 text-white flex items-center justify-center shadow-xl ${social.color} hover:text-white transition-all duration-300`}
+                                        aria-label={social.label}
+                                    >
+                                        <social.icon className="w-7 h-7" />
+                                    </motion.a>
+                                ))}
+                            </motion.div>
 
                         </motion.div>
                     </div>
