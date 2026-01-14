@@ -101,7 +101,7 @@ const HeroSection = () => {
     );
 
     return (
-        <div className={`relative min-h-screen w-full overflow-hidden ${mounted && theme === 'light' ? 'bg-gradient-to-br from-gray-50 via-white to-gray-100' : 'bg-gradient-to-br from-gray-950 via-black to-gray-950'}`}>
+        <div className={`relative w-full overflow-hidden ${mounted && theme === 'light' ? 'bg-gradient-to-br from-gray-50 via-white to-gray-100' : 'bg-gradient-to-br from-gray-950 via-black to-gray-950'}`}>
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px),
@@ -116,7 +116,7 @@ const HeroSection = () => {
             ))}
 
             {/* Main Content */}
-            <div className="relative z-10 flex items-center justify-center min-h-[80vh] lg:min-h-screen pt-40 sm:pt-0 px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 flex items-center justify-center pt-40 pb-16 sm:pt-40 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-7xl mx-auto">
                     <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
                         {/* Left Content */}

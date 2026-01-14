@@ -49,13 +49,13 @@ const Contact = () => {
   });
   const [status, setStatus] = useState({ type: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-const [mounted, setMounted] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
 
-React.useEffect(() => {
-  setMounted(true);
-}, []);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
-if (!mounted) return null;
+  if (!mounted) return null;
   /* ----------------------------------------------------
      CONTACT INFORMATION - CUSTOMIZE THIS!
   ---------------------------------------------------- */
@@ -121,12 +121,12 @@ if (!mounted) return null;
     },
   ];
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus({ type: "", message: "" });
@@ -154,9 +154,8 @@ if (!mounted) return null;
 
   return (
     <div
-      className={`min-h-screen ${
-        theme !== "light" ? "bg-black text-white" : "bg-white text-black"
-      } py-16 px-4 md:px-8`}
+      className={`min-h-screen ${theme !== "light" ? "bg-black text-white" : "bg-white text-black"
+        } py-16 px-4 md:px-8`}
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -182,9 +181,8 @@ if (!mounted) return null;
           </h1>
 
           <p
-            className={`text-lg ${
-              theme !== "light" ? "text-gray-400" : "text-gray-600"
-            } max-w-3xl mx-auto`}
+            className={`text-lg ${theme !== "light" ? "text-gray-400" : "text-gray-600"
+              } max-w-3xl mx-auto`}
           >
             Have a question or want to work together? Feel free to reach out!
           </p>
@@ -207,11 +205,10 @@ if (!mounted) return null;
               whileHover={{ y: -5, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className={`relative ${
-                theme !== "light"
+              className={`relative ${theme !== "light"
                   ? "bg-gray-900/50 border-gray-800"
                   : "bg-gray-100 border-gray-300"
-              } backdrop-blur-sm rounded-2xl border p-6 overflow-hidden group cursor-pointer`}
+                } backdrop-blur-sm rounded-2xl border p-6 overflow-hidden group cursor-pointer`}
             >
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${info.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
@@ -227,9 +224,8 @@ if (!mounted) return null;
                 </motion.div>
 
                 <h3
-                  className={`font-bold text-sm mb-2 ${
-                    theme !== "light" ? "text-gray-400" : "text-gray-600"
-                  }`}
+                  className={`font-bold text-sm mb-2 ${theme !== "light" ? "text-gray-400" : "text-gray-600"
+                    }`}
                 >
                   {info.title}
                 </h3>
@@ -251,11 +247,10 @@ if (!mounted) return null;
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className={`${
-              theme !== "light"
+            className={`${theme !== "light"
                 ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
                 : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
-            } backdrop-blur-sm rounded-2xl border p-8`}
+              } backdrop-blur-sm rounded-2xl border p-8`}
           >
             <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
               Send Me a Message
@@ -265,9 +260,8 @@ if (!mounted) return null;
               {/* Name Input */}
               <div>
                 <label
-                  className={`block text-sm font-semibold mb-2 ${
-                    theme !== "light" ? "text-gray-300" : "text-gray-700"
-                  }`}
+                  className={`block text-sm font-semibold mb-2 ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                    }`}
                 >
                   Your Name
                 </label>
@@ -276,11 +270,10 @@ if (!mounted) return null;
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-xl ${
-                    theme !== "light"
+                  className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
                       ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
                       : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
-                  } border-2 focus:outline-none transition-all duration-300`}
+                    } border-2 focus:outline-none transition-all duration-300`}
                   placeholder="John Doe"
                 />
               </div>
@@ -288,9 +281,8 @@ if (!mounted) return null;
               {/* Email Input */}
               <div>
                 <label
-                  className={`block text-sm font-semibold mb-2 ${
-                    theme !== "light" ? "text-gray-300" : "text-gray-700"
-                  }`}
+                  className={`block text-sm font-semibold mb-2 ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                    }`}
                 >
                   Your Email
                 </label>
@@ -299,11 +291,10 @@ if (!mounted) return null;
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-xl ${
-                    theme !== "light"
+                  className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
                       ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
                       : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
-                  } border-2 focus:outline-none transition-all duration-300`}
+                    } border-2 focus:outline-none transition-all duration-300`}
                   placeholder="john@example.com"
                 />
               </div>
@@ -311,9 +302,8 @@ if (!mounted) return null;
               {/* Subject Input */}
               <div>
                 <label
-                  className={`block text-sm font-semibold mb-2 ${
-                    theme !== "light" ? "text-gray-300" : "text-gray-700"
-                  }`}
+                  className={`block text-sm font-semibold mb-2 ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                    }`}
                 >
                   Subject
                 </label>
@@ -322,11 +312,10 @@ if (!mounted) return null;
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className={`w-full px-4 py-3 rounded-xl ${
-                    theme !== "light"
+                  className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
                       ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
                       : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
-                  } border-2 focus:outline-none transition-all duration-300`}
+                    } border-2 focus:outline-none transition-all duration-300`}
                   placeholder="Project Inquiry"
                 />
               </div>
@@ -334,9 +323,8 @@ if (!mounted) return null;
               {/* Message Textarea */}
               <div>
                 <label
-                  className={`block text-sm font-semibold mb-2 ${
-                    theme !== "light" ? "text-gray-300" : "text-gray-700"
-                  }`}
+                  className={`block text-sm font-semibold mb-2 ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                    }`}
                 >
                   Message
                 </label>
@@ -345,11 +333,10 @@ if (!mounted) return null;
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className={`w-full px-4 py-3 rounded-xl ${
-                    theme !== "light"
+                  className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
                       ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
                       : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
-                  } border-2 focus:outline-none transition-all duration-300 resize-none`}
+                    } border-2 focus:outline-none transition-all duration-300 resize-none`}
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -359,11 +346,10 @@ if (!mounted) return null;
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className={`flex items-start gap-3 p-4 rounded-xl ${
-                    status.type === "success"
+                  className={`flex items-start gap-3 p-4 rounded-xl ${status.type === "success"
                       ? "bg-green-500/10 border-green-500/30 text-green-400"
                       : "bg-red-500/10 border-red-500/30 text-red-400"
-                  } border`}
+                    } border`}
                 >
                   {status.type === "success" ? (
                     <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -407,11 +393,10 @@ if (!mounted) return null;
           >
             {/* Social Links Card */}
             <div
-              className={`${
-                theme !== "light"
+              className={`${theme !== "light"
                   ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
                   : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
-              } backdrop-blur-sm rounded-2xl border p-8`}
+                } backdrop-blur-sm rounded-2xl border p-8`}
             >
               <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
                 Connect With Me
@@ -427,11 +412,10 @@ if (!mounted) return null;
                     whileHover={{ scale: 1.05, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    className={`flex items-center gap-3 p-4 rounded-xl ${
-                      theme !== "light"
+                    className={`flex items-center gap-3 p-4 rounded-xl ${theme !== "light"
                         ? "bg-gray-800 hover:bg-gray-700 border-gray-700"
                         : "bg-white hover:bg-gray-50 border-gray-300"
-                    } border transition-all duration-300 group`}
+                      } border transition-all duration-300 group`}
                   >
                     <div
                       className={`w-10 h-10 rounded-lg bg-gradient-to-br ${social.gradient} flex items-center justify-center`}
@@ -439,9 +423,8 @@ if (!mounted) return null;
                       <social.icon className="w-5 h-5 text-white" />
                     </div>
                     <span
-                      className={`font-semibold ${
-                        theme !== "light" ? "text-gray-300" : "text-gray-700"
-                      } group-hover:text-cyan-400 transition-colors`}
+                      className={`font-semibold ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                        } group-hover:text-cyan-400 transition-colors`}
                     >
                       {social.name}
                     </span>
@@ -452,11 +435,10 @@ if (!mounted) return null;
 
             {/* Additional Info Card */}
             <div
-              className={`${
-                theme !== "light"
+              className={`${theme !== "light"
                   ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
                   : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
-              } backdrop-blur-sm rounded-2xl border p-8`}
+                } backdrop-blur-sm rounded-2xl border p-8`}
             >
               <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500">
                 Let{`'`}s Work Together
@@ -466,9 +448,8 @@ if (!mounted) return null;
                 <div className="flex items-start gap-3">
                   <div className="w-1 h-full bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full" />
                   <p
-                    className={`text-base leading-relaxed ${
-                      theme !== "light" ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`text-base leading-relaxed ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     I&apos;m currently <span className="font-semibold text-green-400">available for freelance</span> work and exciting project collaborations.
                   </p>
@@ -477,9 +458,8 @@ if (!mounted) return null;
                 <div className="flex items-start gap-3">
                   <div className="w-1 h-full bg-gradient-to-b from-purple-400 to-pink-500 rounded-full" />
                   <p
-                    className={`text-base leading-relaxed ${
-                      theme !== "light" ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`text-base leading-relaxed ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     Whether you need a <span className="font-semibold text-purple-400">modern website</span>, a <span className="font-semibold text-pink-400">web application</span>, or want to discuss ideas, I&apos;d love to hear from you!
                   </p>
@@ -488,9 +468,8 @@ if (!mounted) return null;
                 <div className="flex items-start gap-3">
                   <div className="w-1 h-full bg-gradient-to-b from-orange-400 to-rose-500 rounded-full" />
                   <p
-                    className={`text-base leading-relaxed ${
-                      theme !== "light" ? "text-gray-300" : "text-gray-700"
-                    }`}
+                    className={`text-base leading-relaxed ${theme !== "light" ? "text-gray-300" : "text-gray-700"
+                      }`}
                   >
                     I typically respond within <span className="font-semibold text-orange-400">24 hours</span>. Let&apos;s create something amazing together!
                   </p>
@@ -500,18 +479,16 @@ if (!mounted) return null;
 
             {/* Quick Response Times */}
             <div
-              className={`${
-                theme !== "light"
+              className={`${theme !== "light"
                   ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
                   : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
-              } backdrop-blur-sm rounded-2xl border p-6`}
+                } backdrop-blur-sm rounded-2xl border p-6`}
             >
               <div className="flex items-center justify-between">
                 <div>
                   <p
-                    className={`text-sm ${
-                      theme !== "light" ? "text-gray-400" : "text-gray-600"
-                    } mb-1`}
+                    className={`text-sm ${theme !== "light" ? "text-gray-400" : "text-gray-600"
+                      } mb-1`}
                   >
                     Average Response Time
                   </p>
