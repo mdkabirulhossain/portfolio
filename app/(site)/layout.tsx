@@ -23,7 +23,7 @@ export default function RootLayout({
           {/* Navbar appears on all pages */}
           <Navbar />
 
-          <main className="pt-20"> {/* Add margin so content does not hide behind navbar */}
+          <main className="sm:pt-10"> {/* Add margin so content does not hide behind navbar */}
             {children}
           </main>
 

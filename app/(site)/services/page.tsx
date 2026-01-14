@@ -59,7 +59,7 @@ const ServicesSection = () => {
   };
 
   return (
-    <div className={`min-h-screen ${theme !== 'light' ? 'bg-black text-white' : 'bg-white text-black'} py-16 px-4 md:px-8`}>
+    <div className={`min-h-screen ${theme !== 'light' ? 'bg-black text-white' : 'bg-white text-black'} sm:py-16 px-4 md:px-8`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
