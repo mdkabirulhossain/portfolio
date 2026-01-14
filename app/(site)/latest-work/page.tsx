@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -57,7 +57,12 @@ const LatestProjects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeFilter, setActiveFilter] = useState("all");
   const [showAll, setShowAll] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
+  // 3. Set mounted to true on load
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   /* ----------------------------------------------------
      PROJECTS DATA - CUSTOMIZE THIS!
   ---------------------------------------------------- */
@@ -198,11 +203,15 @@ const LatestProjects = () => {
 
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6);
 
+
+  if (!mounted) {
+    return null;
+  }
+
+  const isDark = theme !== "light";
   return (
     <div
-      className={`min-h-screen ${
-        theme !== "light" ? "bg-black text-white" : "bg-white text-black"
-      } sm:py-16 px-4 md:px-8`}
+      className={`min-h-screen ${isDark ? "bg-black text-white" : "bg-white text-black"} sm:py-16 px-4 md:px-8`}
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -228,9 +237,8 @@ const LatestProjects = () => {
           </h1>
 
           <p
-            className={`text-lg ${
-              theme !== "light" ? "text-gray-400" : "text-gray-600"
-            } max-w-3xl mx-auto mb-8`}
+            className={`text-lg ${theme !== "light" ? "text-gray-400" : "text-gray-600"
+              } max-w-3xl mx-auto mb-8`}
           >
             Showcasing my recent work in web development, featuring modern technologies and innovative solutions
           </p>
@@ -243,13 +251,12 @@ const LatestProjects = () => {
                 onClick={() => setActiveFilter(category)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${
-                  activeFilter === category
-                    ? "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30"
-                    : theme !== "light"
+                className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${activeFilter === category
+                  ? "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30"
+                  : theme !== "light"
                     ? "bg-gray-800 text-gray-400 hover:text-gray-200 border border-gray-700"
                     : "bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-300"
-                }`}
+                  }`}
               >
                 <span className="flex items-center gap-2">
                   <Filter className="w-4 h-4" />
@@ -275,20 +282,19 @@ const LatestProjects = () => {
                 key={`${activeFilter}-${project.id}`}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: index * 0.1,
-                  type: "spring", 
-                  stiffness: 100, 
-                  damping: 15 
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15
                 }}
                 whileHover={{ y: -10 }}
                 onClick={() => setSelectedProject(project)}
-                className={`relative ${
-                  theme !== "light"
-                    ? "bg-gray-900/50 border-gray-800"
-                    : "bg-gray-100 border-gray-300"
-                } backdrop-blur-sm rounded-2xl border overflow-hidden cursor-pointer group`}
+                className={`relative ${theme !== "light"
+                  ? "bg-gray-900/50 border-gray-800"
+                  : "bg-gray-100 border-gray-300"
+                  } backdrop-blur-sm rounded-2xl border overflow-hidden cursor-pointer group`}
               >
                 {/* Featured Badge */}
                 {project.featured && (
@@ -332,9 +338,8 @@ const LatestProjects = () => {
                   </div>
 
                   <p
-                    className={`text-sm mb-4 line-clamp-2 ${
-                      theme !== "light" ? "text-gray-400" : "text-gray-600"
-                    }`}
+                    className={`text-sm mb-4 line-clamp-2 ${theme !== "light" ? "text-gray-400" : "text-gray-600"
+                      }`}
                   >
                     {project.shortDescription}
                   </p>
@@ -344,22 +349,20 @@ const LatestProjects = () => {
                     {project.technologies.slice(0, 3).map((tech, idx) => (
                       <span
                         key={idx}
-                        className={`px-2 py-1 text-xs rounded-full ${
-                          theme !== "light"
-                            ? "bg-gray-800 text-gray-300 border-gray-700"
-                            : "bg-gray-200 text-gray-700 border-gray-300"
-                        } border`}
+                        className={`px-2 py-1 text-xs rounded-full ${theme !== "light"
+                          ? "bg-gray-800 text-gray-300 border-gray-700"
+                          : "bg-gray-200 text-gray-700 border-gray-300"
+                          } border`}
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
                       <span
-                        className={`px-2 py-1 text-xs rounded-full ${
-                          theme !== "light"
-                            ? "bg-gray-800 text-cyan-400 border-gray-700"
-                            : "bg-gray-200 text-cyan-600 border-gray-300"
-                        } border`}
+                        className={`px-2 py-1 text-xs rounded-full ${theme !== "light"
+                          ? "bg-gray-800 text-cyan-400 border-gray-700"
+                          : "bg-gray-200 text-cyan-600 border-gray-300"
+                          } border`}
                       >
                         +{project.technologies.length - 3} more
                       </span>
@@ -389,11 +392,10 @@ const LatestProjects = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                      className={`px-4 py-2 rounded-lg ${
-                        theme !== "light"
-                          ? "bg-gray-800 hover:bg-gray-700 border-gray-700"
-                          : "bg-gray-200 hover:bg-gray-300 border-gray-300"
-                      } border transition-all duration-300`}
+                      className={`px-4 py-2 rounded-lg ${theme !== "light"
+                        ? "bg-gray-800 hover:bg-gray-700 border-gray-700"
+                        : "bg-gray-200 hover:bg-gray-300 border-gray-300"
+                        } border transition-all duration-300`}
                     >
                       <Github className="w-5 h-5" />
                     </motion.a>
@@ -446,11 +448,10 @@ const LatestProjects = () => {
                 animate="visible"
                 exit="exit"
                 onClick={(e) => e.stopPropagation()}
-                className={`relative max-w-4xl w-full max-h-[90vh] overflow-y-auto ${
-                  theme !== "light"
-                    ? "bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700"
-                    : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
-                } rounded-3xl border shadow-2xl`}
+                className={`relative max-w-4xl w-full max-h-[90vh] overflow-y-auto ${theme !== "light"
+                  ? "bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700"
+                  : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+                  } rounded-3xl border shadow-2xl`}
               >
                 {/* Close Button */}
                 <motion.button
@@ -458,11 +459,10 @@ const LatestProjects = () => {
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  className={`absolute top-4 right-4 z-10 p-2 rounded-full ${
-                    theme !== "light"
-                      ? "bg-gray-800 hover:bg-gray-700"
-                      : "bg-gray-200 hover:bg-gray-300"
-                  } transition-colors duration-300`}
+                  className={`absolute top-4 right-4 z-10 p-2 rounded-full ${theme !== "light"
+                    ? "bg-gray-800 hover:bg-gray-700"
+                    : "bg-gray-200 hover:bg-gray-300"
+                    } transition-colors duration-300`}
                 >
                   <X className="w-6 h-6" />
                 </motion.button>
@@ -535,11 +535,10 @@ const LatestProjects = () => {
                       {selectedProject.technologies.map((tech, idx) => (
                         <span
                           key={idx}
-                          className={`px-4 py-2 rounded-full font-semibold ${
-                            theme !== "light"
-                              ? "bg-gray-800 text-cyan-400 border-gray-700"
-                              : "bg-gray-200 text-cyan-600 border-gray-300"
-                          } border`}
+                          className={`px-4 py-2 rounded-full font-semibold ${theme !== "light"
+                            ? "bg-gray-800 text-cyan-400 border-gray-700"
+                            : "bg-gray-200 text-cyan-600 border-gray-300"
+                            } border`}
                         >
                           {tech}
                         </span>
@@ -568,11 +567,10 @@ const LatestProjects = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                      className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold ${
-                        theme !== "light"
-                          ? "bg-gray-800 hover:bg-gray-700 border-gray-700"
-                          : "bg-gray-200 hover:bg-gray-300 border-gray-300"
-                      } border transition-all duration-300`}
+                      className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold ${theme !== "light"
+                        ? "bg-gray-800 hover:bg-gray-700 border-gray-700"
+                        : "bg-gray-200 hover:bg-gray-300 border-gray-300"
+                        } border transition-all duration-300`}
                     >
                       <Github className="w-5 h-5" />
                       View Source Code

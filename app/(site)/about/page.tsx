@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
@@ -55,7 +55,12 @@ const tabContentVariants = {
 const AboutMe = () => {
   const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState("skills");
+  const [mounted, setMounted] = useState(false);
 
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   /* ----------------------------------------------------
      SKILLS LIST
   ---------------------------------------------------- */
@@ -207,10 +212,13 @@ const AboutMe = () => {
     { id: "experience", label: "Experience", icon: Briefcase },
     { id: "certifications", label: "Certifications", icon: Award },
   ];
+  if (!mounted) {
+    return <div className="min-h-screen bg-transparent" />;
+  }
 
   return (
     <div
-      className={`min-h-screen ${theme !== "light" ? "bg-black text-white" : "bg-white text-black"
+      className={`min-h-screen ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"
         } sm:py-16 px-4 md:px-8`}
     >
       <div className="max-w-7xl mx-auto">
@@ -259,8 +267,8 @@ const AboutMe = () => {
               variants={cardVariants}
               whileHover={{ y: -5, scale: 1.02 }}
               className={`relative ${theme !== "light"
-                  ? "bg-gray-900/50 border-gray-800"
-                  : "bg-gray-100 border-gray-300"
+                ? "bg-gray-900/50 border-gray-800"
+                : "bg-gray-100 border-gray-300"
                 } backdrop-blur-sm rounded-2xl border p-6 overflow-hidden group`}
             >
               <div
@@ -299,8 +307,8 @@ const AboutMe = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className={`${theme !== "light"
-              ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-              : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+            ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+            : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
             } backdrop-blur-sm rounded-2xl border py-4 mb-16`}
         >
           <div className="space-y-6">
@@ -358,8 +366,8 @@ const AboutMe = () => {
         <div className="mb-16">
           {/* Tab Navigation */}
           <div className={`flex flex-wrap justify-center gap-2 mb-8 ${theme !== "light"
-              ? "bg-gray-900/50 border-gray-800"
-              : "bg-gray-100 border-gray-300"
+            ? "bg-gray-900/50 border-gray-800"
+            : "bg-gray-100 border-gray-300"
             } backdrop-blur-sm rounded-2xl border p-2`}>
             {tabs.map((tab) => (
               <motion.button
@@ -368,10 +376,10 @@ const AboutMe = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className={`relative flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${activeTab === tab.id
-                    ? "text-white"
-                    : theme !== "light"
-                      ? "text-gray-400 hover:text-gray-200"
-                      : "text-gray-600 hover:text-gray-900"
+                  ? "text-white"
+                  : theme !== "light"
+                    ? "text-gray-400 hover:text-gray-200"
+                    : "text-gray-600 hover:text-gray-900"
                   }`}
               >
                 {activeTab === tab.id && (
@@ -409,8 +417,8 @@ const AboutMe = () => {
                       key={index}
                       variants={itemVariants}
                       className={`${theme !== "light"
-                          ? "bg-gray-900/50 border-gray-800"
-                          : "bg-gray-100 border-gray-300"
+                        ? "bg-gray-900/50 border-gray-800"
+                        : "bg-gray-100 border-gray-300"
                         } backdrop-blur-sm rounded-xl border p-4`}
                     >
                       <div className="flex items-center justify-between mb-2">
@@ -439,8 +447,8 @@ const AboutMe = () => {
                       {/* Tech Tag */}
                       <div className="mt-2">
                         <span className={`text-xs px-2 py-1 rounded-full ${theme !== "light"
-                            ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                            : "bg-purple-100 text-purple-600 border border-purple-300"
+                          ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
+                          : "bg-purple-100 text-purple-600 border border-purple-300"
                           }`}>
                           {skill.tech}
                         </span>
@@ -462,8 +470,8 @@ const AboutMe = () => {
               >
                 {education.map((edu, index) => (
                   <div key={index} className={`${theme !== "light"
-                      ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-                      : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+                    ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+                    : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
                     } backdrop-blur-sm rounded-2xl border p-8`}>
                     <div className="flex items-start gap-4 mb-6">
                       <div className="w-16 h-16 rounded-xl bg-linear-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
@@ -518,8 +526,8 @@ const AboutMe = () => {
                             <span
                               key={idx}
                               className={`px-3 py-1 text-sm rounded-full ${theme !== "light"
-                                  ? "bg-gray-800 text-green-400 border-gray-700"
-                                  : "bg-gray-200 text-emerald-600 border-gray-300"
+                                ? "bg-gray-800 text-green-400 border-gray-700"
+                                : "bg-gray-200 text-emerald-600 border-gray-300"
                                 } border`}
                             >
                               {course}
@@ -545,8 +553,8 @@ const AboutMe = () => {
               >
                 {experience.map((exp, index) => (
                   <div key={index} className={`${theme !== "light"
-                      ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-                      : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+                    ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+                    : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
                     } backdrop-blur-sm rounded-2xl border p-8`}>
                     <div className="flex items-start gap-4 mb-6">
                       <div className="w-16 h-16 rounded-xl bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
@@ -599,8 +607,8 @@ const AboutMe = () => {
                             <span
                               key={idx}
                               className={`px-3 py-1 text-sm rounded-full ${theme !== "light"
-                                  ? "bg-gray-800 text-purple-400 border-gray-700"
-                                  : "bg-gray-200 text-purple-600 border-gray-300"
+                                ? "bg-gray-800 text-purple-400 border-gray-700"
+                                : "bg-gray-200 text-purple-600 border-gray-300"
                                 } border`}
                             >
                               {tech}
@@ -629,8 +637,8 @@ const AboutMe = () => {
                     key={index}
                     whileHover={{ y: -5, scale: 1.02 }}
                     className={`${theme !== "light"
-                        ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-                        : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+                      ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+                      : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
                       } backdrop-blur-sm rounded-2xl border p-6 group`}
                   >
                     <div className="flex items-start gap-4">

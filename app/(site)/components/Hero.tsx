@@ -101,7 +101,7 @@ const HeroSection = () => {
     );
 
     return (
-        <div className={`relative min-h-screen w-full overflow-hidden ${theme !== 'light' ? 'bg-gradient-to-br from-gray-950 via-black to-gray-950' : 'bg-gradient-to-br from-gray-50 via-white to-gray-100'}`}>
+        <div className={`relative min-h-screen w-full overflow-hidden ${mounted && theme === 'light' ? 'bg-gradient-to-br from-gray-50 via-white to-gray-100' : 'bg-gradient-to-br from-gray-950 via-black to-gray-950'}`}>
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px),

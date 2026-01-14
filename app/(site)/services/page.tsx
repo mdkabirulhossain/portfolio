@@ -1,12 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Code2, Server, CheckCircle, ArrowRight } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const ServicesSection = () => {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const services = [
     {
@@ -58,8 +63,14 @@ const ServicesSection = () => {
     },
   };
 
+  if (!mounted) {
+    return <div className="min-h-screen bg-transparent" />;
+  }
+
+  const isDark = theme === "dark";
+
   return (
-    <div className={`min-h-screen ${theme !== 'light' ? 'bg-black text-white' : 'bg-white text-black'} sm:py-16 px-4 md:px-8`}>
+    <div className={`min-h-screen ${isDark ? 'bg-black text-white' : 'bg-white text-black'} sm:py-16 px-4 md:px-8`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -92,10 +103,10 @@ const ServicesSection = () => {
             >
               {/* Card Container */}
               <div className={`relative h-full ${theme !== 'light' ? 'bg-gray-900/50' : 'bg-gray-100'} backdrop-blur-sm rounded-2xl border ${theme !== 'light' ? 'border-gray-800' : 'border-gray-300'} overflow-hidden transition-all duration-300`}>
-                
+
                 {/* Gradient Border Effect on Hover */}
                 <div className={`absolute inset-0 bg-linear-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`} />
-                
+
                 {/* Content */}
                 <div className="relative p-8 flex flex-col h-full">
                   {/* Icon with Gradient Background */}

@@ -49,7 +49,13 @@ const Contact = () => {
   });
   const [status, setStatus] = useState({ type: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
+const [mounted, setMounted] = React.useState(false);
 
+React.useEffect(() => {
+  setMounted(true);
+}, []);
+
+if (!mounted) return null;
   /* ----------------------------------------------------
      CONTACT INFORMATION - CUSTOMIZE THIS!
   ---------------------------------------------------- */
