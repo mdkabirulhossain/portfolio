@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect  } from "react";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
 import { motion } from "framer-motion";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -27,43 +27,22 @@ export default function Navbar() {
   const darkMode = theme === 'dark';
 
 
-  const pathname = usePathname();
+useEffect(() => {
+  setMounted(true);
+}, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(timer);
-  }, []);
-
-
-  useEffect(() => {
-
-    const currentPath = pathname.substring(1).toLowerCase();
-
-    let determinedActiveItem = 'Home'; // Default to Home
-
-    if (currentPath === '') {
-      determinedActiveItem = 'Home';
-    } else {
-      const foundItem = navItems.find(item => item.toLowerCase() === currentPath);
-      if (foundItem) {
-        determinedActiveItem = foundItem;
-      }
-    }
-    queueMicrotask(() => setActiveItem(determinedActiveItem));
-
-  }, [pathname]); // Re-run when the URL path changes
 
   // Helper function to get the correct href path
   const getHref = (item: string) => {
-    const slug = item.toLowerCase();
-    return slug === 'home' ? '/' : `/${slug}`;
-  };
+  return `#${item.toLowerCase()}`;
+};
+
 if (!mounted) return null;
 
 // --- Rendered Navbar (UPDATED GRADIENTS) ---
 return (
   <nav className={`w-full ${darkMode ? 'bg-black text-white' : 'bg-white text-black'} fixed top-0 left-0 z-50 shadow-lg border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'}`}>
-    <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+    <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
 
       {/* ---------- Logo (UPDATED GRADIENT) ----------- */}
       <motion.div
@@ -152,7 +131,7 @@ return (
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <Link href="/contact">
+          <Link href="#contact">
             <motion.div
               className={`relative px-6 py-2 rounded-lg font-semibold overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-gray-200'
                 }`}

@@ -8,11 +8,22 @@ export default function Homepage(){
     return (
         <div>
             {/* <HeroSection /> */}
-            <Hero />
+            <section id="home">
+                <Hero />
+            </section>
+            <section id="about">
             <AboutMe />
+            </section>
+            <section id="services">
             <ServicesSection />
+            </section>
+            <section id="projects">
             <LatestProjects />
+            </section>
+            <section id="contact">
             <Contact />
+            </section>
+            
         </div>
     )
 }
