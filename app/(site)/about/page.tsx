@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
+
 import {
   Sparkles,
   Code2,
@@ -226,7 +227,8 @@ const AboutMe = () => {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -259,13 +261,17 @@ const AboutMe = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
           {highlights.map((highlight, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
+              whileInView="visible"
+              initial="hidden"
+              viewport={{ once: true, amount: 0.3 }}
               whileHover={{ y: -5, scale: 1.02 }}
               className={`relative ${theme !== "light"
                 ? "bg-gray-900/50 border-gray-800"
@@ -404,9 +410,11 @@ const AboutMe = () => {
                 key="skills"
                 variants={tabContentVariants}
                 initial="hidden"
-                animate="visible"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
                 exit="exit"
               >
+
                 <motion.div
                   variants={containerVariants}
                   initial="hidden"
