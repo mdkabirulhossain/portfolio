@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Github, Facebook } from 'lucide-react';
@@ -8,43 +9,59 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 
-const CodeSnippet = ({ code, top, left, right, bottom, delay }: {
-    code: string[];
-    top?: string;
-    left?: string;
-    right?: string;
-    bottom?: string;
-    delay: number;
-}) => (
-    <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 0.6, y: 0 }}
-        transition={{ duration: 0.8, delay }}
-        className="absolute hidden md:block"
-        style={{ top, left, right, bottom }}
-    >
-        <div className="bg-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-4 font-mono text-sm">
-            {code.map((line, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: delay + i * 0.1 }}
-                    className="text-cyan-400"
-                >
-                    {line}
-                </motion.div>
-            ))}
-        </div>
-    </motion.div>
-);
+// const CodeSnippet = ({ code, top, left, right, bottom, delay }: {
+//     code: string[];
+//     top?: string;
+//     left?: string;
+//     right?: string;
+//     bottom?: string;
+//     delay: number;
+// }) => (
+//     <motion.div
+//         initial={{ opacity: 0, y: 20 }}
+//         animate={{ opacity: 0.6, y: 0 }}
+//         transition={{ duration: 0.8, delay }}
+//         className="absolute hidden md:block"
+//         style={{ top, left, right, bottom }}
+//     >
+//         <div className="bg-gray-900/50 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-4 font-mono text-sm">
+//             {code.map((line, i) => (
+//                 <motion.div
+//                     key={i}
+//                     initial={{ opacity: 0, x: -10 }}
+//                     animate={{ opacity: 1, x: 0 }}
+//                     transition={{ duration: 0.5, delay: delay + i * 0.1 }}
+//                     className="text-cyan-400"
+//                 >
+//                     {line}
+//                 </motion.div>
+//             ))}
+//         </div>
+//     </motion.div>
+// );
 
 const HeroSection = () => {
     const [mounted, setMounted] = useState(false);
+    const [particles, setParticles] = useState<Array<{
+        initialX: number;
+        initialY: number;
+        animateY: number;
+        duration: number;
+        delay: number;
+    }>>([]);
     const { theme } = useTheme();
 
     useEffect(() => {
         setMounted(true);
+        setParticles(
+            [...Array(15)].map(() => ({
+                initialX: Math.random() * 1000,
+                initialY: Math.random() * 1000,
+                animateY: Math.random() * 1000,
+                duration: Math.random() * 15 + 10,
+                delay: Math.random() * 5,
+            }))
+        );
     }, []);
 
     const containerVariants = {
@@ -67,41 +84,20 @@ const HeroSection = () => {
         },
     };
 
-    const buttonVariants = {
-        hover: {
-            scale: 1.05,
-            transition: { duration: 0.2 },
-        },
-        tap: { scale: 0.95 },
-    };
+useEffect(() => {
+  setMounted(true);
+}, []);
 
-    const codeSnippets = [
-        {
-            code: [
-                'const useCustomHook = () => {',
-                ' const [state, setState] = useState();',
-                ' return { state, setState };',
-                '};'
-            ],
-            bottom: '35%',
-            left: '48%',
-            delay: 1.1
-        },
-    ];
-
-    const particles = useMemo(() =>
-        [...Array(15)].map(() => ({
-            initialX: Math.random() * 1000,
-            initialY: Math.random() * 1000,
-            animateY: Math.random() * 1000,
-            duration: Math.random() * 15 + 10,
-            delay: Math.random() * 5,
-        })),
-        []
-    );
+if (!mounted) return null;
 
     return (
-        <div className={`relative w-full overflow-hidden ${mounted && theme === 'light' ? 'bg-gradient-to-br from-gray-50 via-white to-gray-100' : 'bg-gradient-to-br from-gray-950 via-black to-gray-950'}`}>
+        <div
+  className={`relative w-full overflow-hidden ${
+    theme !== 'light'
+      ? 'bg-black text-white'
+      : 'bg-white text-black'
+  }`}
+>
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px),
@@ -110,13 +106,9 @@ const HeroSection = () => {
                 }} />
             </div>
 
-            {/* Code Snippets Background */}
-            {codeSnippets.map((snippet, index) => (
-                <CodeSnippet key={index} {...snippet} />
-            ))}
 
             {/* Main Content */}
-            <div className="relative z-10 flex items-center justify-center pt-40 pb-16 sm:pt-40 px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 flex items-center justify-center pt-40 pb-16npm run dev sm:pt-40 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-7xl mx-auto">
                     <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
                         {/* Left Content */}

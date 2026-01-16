@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 
 "use client";
 
@@ -33,7 +34,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { type: "spring", stiffness: 100, damping: 12 },
+    transition: { type: "spring" as const, stiffness: 100, damping: 12 },
   },
 };
 
@@ -42,7 +43,10 @@ const cardVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+transition: {
+  duration: 0.6,
+  ease: [0, 0, 0.2, 1] as [number, number, number, number],
+},
   },
 };
 
@@ -355,7 +359,7 @@ const AboutMe = () => {
                   className={`text-lg leading-relaxed ${theme !== "light" ? "text-gray-300" : "text-gray-700"
                     }`}
                 >
-                  I enjoy writing clean code, solving complex problems, and continuously learning new technologies. Whether it's frontend, backend, or exploring AI innovations—I always strive to improve and grow.
+                  I enjoy writing clean code, solving complex problems, and continuously learning new technologies. Whether it&apos;s frontend, backend, or exploring AI innovations—I always strive to improve and grow.
                 </p>
               </div>
             </div>
