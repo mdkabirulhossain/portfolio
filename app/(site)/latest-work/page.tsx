@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -8,7 +9,6 @@ import {
   Sparkles,
   ExternalLink,
   Github,
-  Code2,
   Calendar,
   Filter,
   X,
@@ -26,7 +26,7 @@ const modalVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { type: "spring", stiffness: 300, damping: 25 },
+    transition: { type: "spring" as const, stiffness: 300, damping: 25 },
   },
   exit: {
     opacity: 0,
