@@ -211,20 +211,23 @@ const LatestProjects = () => {
   const isDark = theme !== "light";
   return (
     <div
-      className={`min-h-screen ${isDark ? "bg-black text-white" : "bg-white text-black"} sm:py-16 px-4 md:px-8`}
+      className={`min-h-screen overflow-y-scroll overflow-x-hidden ${isDark ? "bg-black text-white" : "bg-white text-black"} py-16 px-4 md:px-8`}
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
+
           <motion.div
             initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 mb-4"
           >
             <Sparkles className="w-6 h-6 text-cyan-400" />
@@ -244,25 +247,25 @@ const LatestProjects = () => {
           </p>
 
           {/* Filter Buttons - FIXED TRANSITIONS */}
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex gap-3 overflow-x-auto md:overflow-x-hidden whitespace-nowrap sm:justify-center scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {categories.map((category) => (
               <motion.button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${activeFilter === category
-                  ? "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30"
-                  : theme !== "light"
-                    ? "bg-gray-800 text-gray-400 hover:text-gray-200 border border-gray-700"
-                    : "bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-300"
-                  }`}
-              >
-                <span className="flex items-center gap-2">
-                  <Filter className="w-4 h-4" />
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </span>
-              </motion.button>
+  key={category}
+  onClick={() => setActiveFilter(category)}
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  className={`px-6 py-2.5 rounded-full font-semibold transition-all duration-300 ${activeFilter === category
+    ? "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/30"
+    : theme !== "light"
+      ? "bg-gray-800 text-gray-400 hover:text-gray-200 border border-gray-700"
+      : "bg-gray-100 text-gray-600 hover:text-gray-900 border border-gray-300"
+    }`}
+>
+  <span className="flex items-center gap-2">
+    <Filter className="w-4 h-4" />
+    {category.charAt(0).toUpperCase() + category.slice(1)}
+  </span>
+</motion.button>
             ))}
           </div>
         </motion.div>
@@ -272,7 +275,8 @@ const LatestProjects = () => {
           <motion.div
             key={activeFilter}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
@@ -281,7 +285,8 @@ const LatestProjects = () => {
               <motion.div
                 key={`${activeFilter}-${project.id}`}
                 initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
                 transition={{
                   duration: 0.5,
                   delay: index * 0.1,
@@ -415,8 +420,9 @@ const LatestProjects = () => {
         {/* Load More Button - FIXED SMOOTH TRANSITION */}
         {filteredProjects.length > 6 && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.5 }}
             className="text-center"
           >
