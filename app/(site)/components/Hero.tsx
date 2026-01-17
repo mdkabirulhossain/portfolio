@@ -388,7 +388,7 @@ const HeroSection = () => {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 flex items-center justify-center min-h-screen pt-40 sm:pt-0 pb-16 sm:pb-0 px-4 sm:px-6 lg:px-8">
+            <div className="relative z-10 flex items-center justify-center min-h-screen pt-40  pb-16 sm:pb-0 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-7xl mx-auto">
                     <div className="flex flex-col-reverse gap-12 lg:gap-16">
                         {/* Left Content */}
