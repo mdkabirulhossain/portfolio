@@ -227,7 +227,7 @@ const AboutMe = () => {
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
@@ -261,7 +261,7 @@ const AboutMe = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: false, amount: 0.3 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
           {highlights.map((highlight, index) => (
@@ -270,7 +270,7 @@ const AboutMe = () => {
               variants={cardVariants}
               whileInView="visible"
               initial="hidden"
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.3 }}
               whileHover={{ y: -5, scale: 1.02 }}
               className={`relative ${theme !== "light"
                 ? "bg-gray-900/50 border-gray-800"
@@ -310,8 +310,9 @@ const AboutMe = () => {
         {/* About Description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
           className={`${theme !== "light"
             ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
             : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
@@ -371,38 +372,38 @@ const AboutMe = () => {
         {/* Tabs Section */}
         <div className="mb-16">
           {/* Tab Navigation */}
- <div className="flex justify-center mb-8">
-    <div
-      className={`inline-flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200
+          <div className="flex justify-center mb-8">
+            <div
+              className={`inline-flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200
         ${theme !== "light" ? "bg-gray-900/50 border-gray-800" : "bg-gray-100 border-gray-300"} 
         backdrop-blur-sm rounded-2xl border p-2`}
-      style={{ maxWidth: '100%' }}
-    >
-            {tabs.map((tab) => (
-              <motion.button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`relative flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${activeTab === tab.id
-                  ? "text-white"
-                  : theme !== "light"
-                    ? "text-gray-400 hover:text-gray-200"
-                    : "text-gray-600 hover:text-gray-900"
-                  }`}
-              >
-                {activeTab === tab.id && (
-                  <motion.div
-                    layoutId="activeTabBg"
-                    className="absolute inset-0 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <tab.icon className="w-5 h-5 relative z-10" />
-                <span className="relative z-10">{tab.label}</span>
-              </motion.button>
-            ))}
-          </div>
+              style={{ maxWidth: '100%' }}
+            >
+              {tabs.map((tab) => (
+                <motion.button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`relative flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${activeTab === tab.id
+                    ? "text-white"
+                    : theme !== "light"
+                      ? "text-gray-400 hover:text-gray-200"
+                      : "text-gray-600 hover:text-gray-900"
+                    }`}
+                >
+                  {activeTab === tab.id && (
+                    <motion.div
+                      layoutId="activeTabBg"
+                      className="absolute inset-0 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <tab.icon className="w-5 h-5 relative z-10" />
+                  <span className="relative z-10">{tab.label}</span>
+                </motion.button>
+              ))}
+            </div>
           </div>
 
           {/* Tab Content */}
@@ -414,7 +415,7 @@ const AboutMe = () => {
                 variants={tabContentVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: false, amount: 0.3 }}
                 exit="exit"
               >
 
@@ -682,7 +683,7 @@ const AboutMe = () => {
         </div>
       </div>
     </div>
-    
+
   );
 };
 
