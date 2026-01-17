@@ -76,10 +76,12 @@ const ServicesSection = () => {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
+
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-sky-400 to-blue-500">
             My Services
           </h1>
@@ -92,9 +94,11 @@ const ServicesSection = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
+
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -162,10 +166,12 @@ const ServicesSection = () => {
         {/* Bottom CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
           className="mt-16 text-center"
         >
+
           <div className={`${theme !== 'light' ? 'bg-gradient-to-r from-gray-900/50 to-gray-800/50' : 'bg-gradient-to-r from-gray-100 to-gray-200'} backdrop-blur-sm rounded-2xl border ${theme !== 'light' ? 'border-gray-800' : 'border-gray-300'} p-8 md:p-12`}>
             <h2 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-cyan-400 to-blue-500">
               Ready to Start Your Project?
