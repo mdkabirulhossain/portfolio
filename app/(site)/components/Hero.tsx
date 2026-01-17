@@ -374,8 +374,8 @@ const HeroSection = () => {
     return (
         <div
             className={`relative w-full overflow-hidden ${theme !== 'light'
-                    ? 'bg-black text-white'
-                    : 'bg-white text-black'
+                ? 'bg-black text-white'
+                : 'bg-white text-black'
                 }`}
         >
             {/* Grid Background */}
@@ -395,9 +395,11 @@ const HeroSection = () => {
                         <motion.div
                             variants={containerVariants}
                             initial="hidden"
-                            animate="visible"
+                            whileInView="visible"
+                            viewport={{ once: false, amount: 0.3 }}
                             className="text-center"
                         >
+
                             <motion.h1
                                 variants={itemVariants}
                                 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight"
@@ -437,8 +439,8 @@ const HeroSection = () => {
                                             whileHover={{ scale: 1.1, y: -5 }}
                                             transition={{ type: "spring", stiffness: 300 }}
                                             className={`px-4 py-2 rounded-full border-2 ${theme !== 'light'
-                                                    ? 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'
-                                                    : 'border-cyan-600/30 bg-cyan-600/10 text-cyan-700'
+                                                ? 'border-cyan-500/30 bg-cyan-500/10 text-cyan-400'
+                                                : 'border-cyan-600/30 bg-cyan-600/10 text-cyan-700'
                                                 }`}
                                         >
                                             {tech}
@@ -475,8 +477,8 @@ const HeroSection = () => {
                                             size="lg"
                                             variant="outline"
                                             className={`border-2 cursor-pointer font-semibold px-8 py-6 rounded-full text-lg transition-all duration-300 ${theme !== 'light'
-                                                    ? 'border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white'
-                                                    : 'border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white'
+                                                ? 'border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-white'
+                                                : 'border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white'
                                                 }`}
                                         >
                                             My Resume
@@ -489,10 +491,12 @@ const HeroSection = () => {
                         {/* Right Content - Profile Image with Social Icons */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                            transition={{ duration: 0.8, ease: 'easeOut' }}
                             className="relative flex flex-col items-center gap-8"
                         >
+
                             {/* Profile Circle with Image */}
                             <div className="relative">
                                 <motion.div
@@ -524,10 +528,12 @@ const HeroSection = () => {
                             {/* Social Icons Below Circle */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 1.2 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: false, amount: 0.3 }}
+                                transition={{ duration: 0.6 }}
                                 className="flex gap-6"
                             >
+
                                 {[
                                     {
                                         icon: Linkedin,
