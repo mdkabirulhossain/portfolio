@@ -160,15 +160,17 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
+  initial={{ opacity: 0, y: -30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+  initial={{ scale: 0 }}
+  whileInView={{ scale: 1 }}
+  viewport={{ once: false, amount: 0.5 }}
+  transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 mb-4"
           >
             <Sparkles className="w-6 h-6 text-cyan-400" />
@@ -190,9 +192,10 @@ const Contact = () => {
 
         {/* Contact Info Cards */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+  variants={containerVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: false, amount: 0.2 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
           {contactInfo.map((info, index) => (
@@ -202,7 +205,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               variants={itemVariants}
-              whileHover={{ y: -5, scale: 1.02 }}
+              whileHover={{ y: -6 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
               className={`relative ${theme !== "light"
@@ -245,7 +248,8 @@ const Contact = () => {
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+whileInView={{ opacity: 1, x: 0 }}
+viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8 }}
             className={`${theme !== "light"
                 ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
@@ -387,7 +391,8 @@ const Contact = () => {
           {/* Social Links & Additional Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+whileInView={{ opacity: 1, x: 0 }}
+viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
@@ -409,7 +414,7 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     className={`flex items-center gap-3 p-4 rounded-xl ${theme !== "light"
@@ -445,7 +450,7 @@ const Contact = () => {
               </h2>
 
               <div className="space-y-4">
-                <div className="flex items-start gap-3">
+                <div className="flex items-start ">
                   <div className="w-1 h-full bg-gradient-to-b from-cyan-400 to-blue-500 rounded-full" />
                   <p
                     className={`text-base leading-relaxed ${theme !== "light" ? "text-gray-300" : "text-gray-700"
@@ -455,7 +460,7 @@ const Contact = () => {
                   </p>
                 </div>
 
-                <div className="flex items-start gap-3">
+                <div className="flex items-start">
                   <div className="w-1 h-full bg-gradient-to-b from-purple-400 to-pink-500 rounded-full" />
                   <p
                     className={`text-base leading-relaxed ${theme !== "light" ? "text-gray-300" : "text-gray-700"
@@ -465,7 +470,7 @@ const Contact = () => {
                   </p>
                 </div>
 
-                <div className="flex items-start gap-3">
+                <div className="flex items-start  ">
                   <div className="w-1 h-full bg-gradient-to-b from-orange-400 to-rose-500 rounded-full" />
                   <p
                     className={`text-base leading-relaxed ${theme !== "light" ? "text-gray-300" : "text-gray-700"
