@@ -179,13 +179,14 @@ const ServicesSection = () => {
             <p className={`${theme !== 'light' ? 'text-gray-400' : 'text-gray-600'} mb-6 max-w-2xl mx-auto`}>
               Let&apos;s work together to turn your vision into reality. Get in touch to discuss how I can help with your next project.
             </p>
-            <motion.button
+            <motion.a
+             href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-semibold px-8 py-4 rounded-full text-lg shadow-lg shadow-purple-500/50 transition-all"
             >
               Get In Touch
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
       </div>
