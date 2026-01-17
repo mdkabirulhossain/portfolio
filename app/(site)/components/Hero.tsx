@@ -84,20 +84,19 @@ const HeroSection = () => {
         },
     };
 
-useEffect(() => {
-  setMounted(true);
-}, []);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-if (!mounted) return null;
+    if (!mounted) return null;
 
     return (
         <div
-  className={`relative w-full overflow-hidden ${
-    theme !== 'light'
-      ? 'bg-black text-white'
-      : 'bg-white text-black'
-  }`}
->
+            className={`relative w-full overflow-hidden ${theme !== 'light'
+                    ? 'bg-black text-white'
+                    : 'bg-white text-black'
+                }`}
+        >
             <div className="absolute inset-0 opacity-20">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `linear-gradient(rgba(6, 182, 212, 0.15) 1px, transparent 1px),
@@ -108,8 +107,8 @@ if (!mounted) return null;
 
 
             {/* Main Content */}
-            <div className="relative z-10 flex items-center justify-center pt-40 pb-16npm run dev sm:pt-40 px-4 sm:px-6 lg:px-8">
-                <div className="w-full max-w-7xl mx-auto">
+<div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+                    <div className="w-full max-w-7xl mx-auto">
                     <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
                         {/* Left Content */}
                         <motion.div
@@ -135,7 +134,7 @@ if (!mounted) return null;
                                 variants={itemVariants}
                                 className="flex flex-col sm:flex-row gap-4 justify-center"
                             >
-                                <motion.div 
+                                <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -148,7 +147,7 @@ if (!mounted) return null;
                                     </Button>
                                 </motion.div>
 
-                                <motion.div 
+                                <motion.div
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -157,11 +156,10 @@ if (!mounted) return null;
                                         <Button
                                             size="lg"
                                             variant="outline"
-                                            className={`border-2 cursor-pointer font-semibold px-8 py-6 rounded-full text-lg transition-all duration-300 ${
-                                                theme !== 'light'
+                                            className={`border-2 cursor-pointer font-semibold px-8 py-6 rounded-full text-lg transition-all duration-300 ${theme !== 'light'
                                                     ? 'border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black'
                                                     : 'border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white'
-                                            }`}
+                                                }`}
                                         >
                                             My Resume
                                         </Button>
@@ -191,9 +189,8 @@ if (!mounted) return null;
                                     className="absolute -inset-2 rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-75 blur-md"
                                 />
 
-                                <div className={`relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 shadow-2xl ${
-                                    theme !== 'light' ? 'border-gray-900' : 'border-white'
-                                }`}>
+                                <div className={`relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 shadow-2xl ${theme !== 'light' ? 'border-gray-900' : 'border-white'
+                                    }`}>
                                     <Image
                                         src="/images/Kabirul.png"
                                         alt="Md. Kabirul Hossain"
@@ -241,15 +238,15 @@ if (!mounted) return null;
                                         href={social.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        whileHover={{ 
+                                        whileHover={{
                                             scale: 1.2,
                                             y: -8,
                                             rotate: [0, -10, 10, -10, 0]
                                         }}
                                         whileTap={{ scale: 0.9 }}
-                                        transition={{ 
-                                            type: "spring", 
-                                            stiffness: 400, 
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 400,
                                             damping: 10,
                                             rotate: {
                                                 duration: 0.5,
@@ -261,16 +258,16 @@ if (!mounted) return null;
                                     >
                                         {/* Glow effect on hover */}
                                         <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${social.gradient} opacity-0 group-hover:opacity-50 blur-md transition-opacity duration-300`} />
-                                        
+
                                         {/* Icon with spring animation */}
                                         <motion.div
-                                            whileHover={{ 
+                                            whileHover={{
                                                 scale: 1.1,
-                                                rotate: 360 
+                                                rotate: 360
                                             }}
-                                            transition={{ 
-                                                type: "spring", 
-                                                stiffness: 260, 
+                                            transition={{
+                                                type: "spring",
+                                                stiffness: 260,
                                                 damping: 20,
                                                 rotate: {
                                                     duration: 0.6,

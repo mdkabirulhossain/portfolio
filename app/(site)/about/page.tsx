@@ -75,7 +75,6 @@ const AboutMe = () => {
     { name: "Next.js", tech: "Next", icon: "⏭️", proficiency: 85, projects: 70 },
     { name: "TailwindCSS", tech: "CSS", icon: "🌬️", proficiency: 88, projects: 75 },
     { name: "Bootstrap", tech: "CSS", icon: "🟣", proficiency: 75, projects: 60 },
-    { name: "DaisyUI", tech: "CSS", icon: "🌸", proficiency: 80, projects: 62 },
     { name: "ShadCN", tech: "UI", icon: "✨", proficiency: 85, projects: 65 },
     { name: "Framer Motion", tech: "Animation", icon: "🌀", proficiency: 82, projects: 60 },
     { name: "MongoDB", tech: "Database", icon: "🍃", proficiency: 78, projects: 55 },
@@ -372,10 +371,13 @@ const AboutMe = () => {
         {/* Tabs Section */}
         <div className="mb-16">
           {/* Tab Navigation */}
-          <div className={`flex flex-wrap justify-center gap-2 mb-8 ${theme !== "light"
-            ? "bg-gray-900/50 border-gray-800"
-            : "bg-gray-100 border-gray-300"
-            } backdrop-blur-sm rounded-2xl border p-2`}>
+ <div className="flex justify-center mb-8">
+    <div
+      className={`inline-flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200
+        ${theme !== "light" ? "bg-gray-900/50 border-gray-800" : "bg-gray-100 border-gray-300"} 
+        backdrop-blur-sm rounded-2xl border p-2`}
+      style={{ maxWidth: '100%' }}
+    >
             {tabs.map((tab) => (
               <motion.button
                 key={tab.id}
@@ -400,6 +402,7 @@ const AboutMe = () => {
                 <span className="relative z-10">{tab.label}</span>
               </motion.button>
             ))}
+          </div>
           </div>
 
           {/* Tab Content */}
@@ -679,6 +682,7 @@ const AboutMe = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 
