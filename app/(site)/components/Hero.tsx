@@ -459,12 +459,17 @@ const HeroSection = () => {
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                                 >
+                                    <Link href="#contact">
                                     <Button
+                                    
                                         size="lg"
                                         className="bg-gradient-to-r cursor-pointer from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white font-semibold px-8 py-6 rounded-full text-lg shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300"
                                     >
                                         Connect With Me
+
+                                        
                                     </Button>
+                                    </Link>
                                 </motion.div>
 
                                 <motion.div

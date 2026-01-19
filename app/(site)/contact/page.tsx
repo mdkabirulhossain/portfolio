@@ -63,15 +63,15 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "your.email@example.com",
-      link: "mailto:your.email@example.com",
+      value: "mdkabirulhossainj@gmail.com",
+      link: "mailto:mdkabirulhossainj@gmail.com",
       gradient: "from-cyan-500 to-blue-500",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+880 1234-567890",
-      link: "tel:+8801234567890",
+      value: "+880 1762091018",
+      link: "tel:+8801762091018",
       gradient: "from-purple-500 to-pink-500",
     },
     {
@@ -84,8 +84,8 @@ const Contact = () => {
     {
       icon: Globe,
       title: "Website",
-      value: "www.yourwebsite.com",
-      link: "https://www.yourwebsite.com",
+      value: "www.kabirul15.com",
+      link: "https://kabirul15.netlify.app/",
       gradient: "from-orange-500 to-rose-500",
     },
   ];
@@ -94,28 +94,28 @@ const Contact = () => {
     {
       icon: Github,
       name: "GitHub",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/mdkabirulhossain",
       gradient: "from-gray-700 to-gray-900",
       hoverColor: "hover:text-gray-400",
     },
     {
       icon: Linkedin,
       name: "LinkedIn",
-      url: "https://linkedin.com/in/yourusername",
+      url: "https://www.linkedin.com/in/md-kabirul-hossain-0a63351ab/",
       gradient: "from-blue-600 to-blue-800",
       hoverColor: "hover:text-blue-400",
     },
     {
       icon: Twitter,
       name: "Twitter",
-      url: "https://twitter.com/yourusername",
+      url: "#",
       gradient: "from-sky-500 to-blue-600",
       hoverColor: "hover:text-sky-400",
     },
     {
       icon: Globe,
       name: "Portfolio",
-      url: "https://yourportfolio.com",
+      url: "https://kabirul15.netlify.app/",
       gradient: "from-purple-600 to-pink-600",
       hoverColor: "hover:text-purple-400",
     },
@@ -160,17 +160,17 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-  initial={{ opacity: 0, y: -30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: false, amount: 0.3 }}
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
           <motion.div
-  initial={{ scale: 0 }}
-  whileInView={{ scale: 1 }}
-  viewport={{ once: false, amount: 0.5 }}
-  transition={{ duration: 0.5 }}
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 mb-4"
           >
             <Sparkles className="w-6 h-6 text-cyan-400" />
@@ -192,10 +192,10 @@ const Contact = () => {
 
         {/* Contact Info Cards */}
         <motion.div
-  variants={containerVariants}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: false, amount: 0.2 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
         >
           {contactInfo.map((info, index) => (
@@ -209,8 +209,8 @@ const Contact = () => {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
               className={`relative ${theme !== "light"
-                  ? "bg-gray-900/50 border-gray-800"
-                  : "bg-gray-100 border-gray-300"
+                ? "bg-gray-900/50 border-gray-800"
+                : "bg-gray-100 border-gray-300"
                 } backdrop-blur-sm rounded-2xl border p-6 overflow-hidden group cursor-pointer`}
             >
               <div
@@ -248,12 +248,12 @@ const Contact = () => {
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-whileInView={{ opacity: 1, x: 0 }}
-viewport={{ once: false, amount: 0.3 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8 }}
             className={`${theme !== "light"
-                ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-                : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+              ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+              : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
               } backdrop-blur-sm rounded-2xl border p-8`}
           >
             <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -275,8 +275,8 @@ viewport={{ once: false, amount: 0.3 }}
                   value={formData.name}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
-                      ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
-                      : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
+                    ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
+                    : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
                     } border-2 focus:outline-none transition-all duration-300`}
                   placeholder="John Doe"
                 />
@@ -296,8 +296,8 @@ viewport={{ once: false, amount: 0.3 }}
                   value={formData.email}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
-                      ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
-                      : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
+                    ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
+                    : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
                     } border-2 focus:outline-none transition-all duration-300`}
                   placeholder="john@example.com"
                 />
@@ -317,8 +317,8 @@ viewport={{ once: false, amount: 0.3 }}
                   value={formData.subject}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
-                      ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
-                      : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
+                    ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
+                    : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
                     } border-2 focus:outline-none transition-all duration-300`}
                   placeholder="Project Inquiry"
                 />
@@ -338,8 +338,8 @@ viewport={{ once: false, amount: 0.3 }}
                   onChange={handleChange}
                   rows={5}
                   className={`w-full px-4 py-3 rounded-xl ${theme !== "light"
-                      ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
-                      : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
+                    ? "bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-cyan-400"
+                    : "bg-white border-gray-300 text-black placeholder-gray-400 focus:border-cyan-500"
                     } border-2 focus:outline-none transition-all duration-300 resize-none`}
                   placeholder="Tell me about your project..."
                 />
@@ -351,8 +351,8 @@ viewport={{ once: false, amount: 0.3 }}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className={`flex items-start gap-3 p-4 rounded-xl ${status.type === "success"
-                      ? "bg-green-500/10 border-green-500/30 text-green-400"
-                      : "bg-red-500/10 border-red-500/30 text-red-400"
+                    ? "bg-green-500/10 border-green-500/30 text-green-400"
+                    : "bg-red-500/10 border-red-500/30 text-red-400"
                     } border`}
                 >
                   {status.type === "success" ? (
@@ -391,16 +391,16 @@ viewport={{ once: false, amount: 0.3 }}
           {/* Social Links & Additional Info */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-whileInView={{ opacity: 1, x: 0 }}
-viewport={{ once: false, amount: 0.3 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
             {/* Social Links Card */}
             <div
               className={`${theme !== "light"
-                  ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-                  : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+                ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+                : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
                 } backdrop-blur-sm rounded-2xl border p-8`}
             >
               <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">
@@ -418,8 +418,8 @@ viewport={{ once: false, amount: 0.3 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     className={`flex items-center gap-3 p-4 rounded-xl ${theme !== "light"
-                        ? "bg-gray-800 hover:bg-gray-700 border-gray-700"
-                        : "bg-white hover:bg-gray-50 border-gray-300"
+                      ? "bg-gray-800 hover:bg-gray-700 border-gray-700"
+                      : "bg-white hover:bg-gray-50 border-gray-300"
                       } border transition-all duration-300 group`}
                   >
                     <div
@@ -441,8 +441,8 @@ viewport={{ once: false, amount: 0.3 }}
             {/* Additional Info Card */}
             <div
               className={`${theme !== "light"
-                  ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-                  : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+                ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+                : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
                 } backdrop-blur-sm rounded-2xl border p-8`}
             >
               <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-500">
@@ -485,8 +485,8 @@ viewport={{ once: false, amount: 0.3 }}
             {/* Quick Response Times */}
             <div
               className={`${theme !== "light"
-                  ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
-                  : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
+                ? "bg-gradient-to-br from-gray-900/50 to-gray-800/50 border-gray-800"
+                : "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-300"
                 } backdrop-blur-sm rounded-2xl border p-6`}
             >
               <div className="flex items-center justify-between">
