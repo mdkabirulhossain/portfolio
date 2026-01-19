@@ -88,46 +88,46 @@ const AboutMe = () => {
   /* ----------------------------------------------------
    SKILLS LIST - CATEGORIZED
 ---------------------------------------------------- */
-const skillCategories = [
-  {
-    title: "Frontend",
-    icon: Code2,
-    gradient: "from-cyan-500 to-blue-500",
-    skills: [
-      { name: "REACT", level: "EXPERT", proficiency: 90 },
-      { name: "NEXT.JS", level: "EXPERT", proficiency: 85 },
-      { name: "TYPESCRIPT", level: "EXPERT", proficiency: 80 },
-      { name: "TAILWIND CSS", level: "EXPERT", proficiency: 88 },
-      { name: "FRAMER MOTION", level: "EXPERT", proficiency: 82 },
-      { name: "SHADCN", level: "EXPERT", proficiency: 85 },
-    ],
-  },
-  {
-    title: "Backend",
-    icon: Briefcase,
-    gradient: "from-purple-500 to-pink-500",
-    skills: [
-      { name: "NODE.JS", level: "EXPERT", proficiency: 85 },
-      { name: "EXPRESS", level: "EXPERT", proficiency: 80 },
-      { name: "REST API", level: "EXPERT", proficiency: 80 },
-      { name: "MONGODB", level: "EXPERT", proficiency: 78 },
-      { name: "MONGOOSE", level: "EXPERT", proficiency: 78 },
-      { name: "MYSQL", level: "EXPERT", proficiency: 78 },
-    ],
-  },
-  {
-    title: "Programming",
-    icon: Target,
-    gradient: "from-orange-500 to-rose-500",
-    skills: [
-      { name: "C", level: "EXPERT", proficiency: 70 },
-      { name: "C++", level: "EXPERT", proficiency: 65 },
-      { name: "JAVASCRIPT", level: "EXPERT", proficiency: 85 },
-      { name: "JAVA", level: "EXPERT", proficiency: 75 },
-      { name: "PYTHON", level: "EXPERT", proficiency: 80 },
-    ],
-  },
-];
+  const skillCategories = [
+    {
+      title: "Frontend",
+      icon: Code2,
+      gradient: "from-cyan-500 to-blue-500",
+      skills: [
+        { name: "REACT", level: "EXPERT", proficiency: 90 },
+        { name: "NEXT.JS", level: "EXPERT", proficiency: 85 },
+        { name: "TYPESCRIPT", level: "EXPERT", proficiency: 80 },
+        { name: "TAILWIND CSS", level: "EXPERT", proficiency: 88 },
+        { name: "FRAMER MOTION", level: "EXPERT", proficiency: 82 },
+        { name: "SHADCN", level: "EXPERT", proficiency: 85 },
+      ],
+    },
+    {
+      title: "Backend",
+      icon: Briefcase,
+      gradient: "from-purple-500 to-pink-500",
+      skills: [
+        { name: "NODE.JS", level: "EXPERT", proficiency: 85 },
+        { name: "EXPRESS", level: "EXPERT", proficiency: 80 },
+        { name: "REST API", level: "EXPERT", proficiency: 80 },
+        { name: "MONGODB", level: "EXPERT", proficiency: 78 },
+        { name: "MONGOOSE", level: "EXPERT", proficiency: 78 },
+        { name: "MYSQL", level: "EXPERT", proficiency: 78 },
+      ],
+    },
+    {
+      title: "Programming",
+      icon: Target,
+      gradient: "from-orange-500 to-rose-500",
+      skills: [
+        { name: "C", level: "EXPERT", proficiency: 70 },
+        { name: "C++", level: "EXPERT", proficiency: 65 },
+        { name: "JAVASCRIPT", level: "EXPERT", proficiency: 85 },
+        { name: "JAVA", level: "EXPERT", proficiency: 75 },
+        { name: "PYTHON", level: "EXPERT", proficiency: 80 },
+      ],
+    },
+  ];
 
   /* ----------------------------------------------------
      EDUCATION DATA
@@ -163,7 +163,7 @@ const skillCategories = [
       title: "Frontend Developer",
       company: "Softvence",
       location: "Dhaka, Bangladesh",
-      duration: "Jan 2024 - Present",
+      duration: "Nov 2025 - Present",
       type: "Full-time",
       responsibilities: [
         "Developing responsive web applications using Next.js, TypeScript, and Tailwind CSS",
@@ -414,7 +414,7 @@ const skillCategories = [
         </motion.div>
 
         {/* Tabs Section */}
-        <div className="mb-16">
+        <div className="mb-16 sm:mb-0 ">
           {/* Tab Navigation */}
           <div className="flex justify-center mb-8">
             <div
@@ -454,96 +454,92 @@ const skillCategories = [
           <AnimatePresence mode="wait">
             {/* SKILLS TAB */}
             {/* SKILLS TAB */}
-{activeTab === "skills" && (
-  <motion.div
-    key="skills"
-    variants={tabContentVariants}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: false, amount: 0.3 }}
-    exit="exit"
-  >
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-    >
-      {skillCategories.map((category, catIndex) => (
-        <motion.div
-          key={catIndex}
-          variants={cardVariants}
-          className={`${
-            theme !== "light"
-              ? "bg-gray-900/50 border-gray-800"
-              : "bg-gray-100 border-gray-300"
-          } backdrop-blur-sm rounded-2xl border p-6 overflow-hidden`}
-        >
-          {/* Category Header */}
-          <div className="flex items-center gap-3 mb-6">
-            <div
-              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center shadow-lg`}
-            >
-              <category.icon className="w-6 h-6 text-white" />
-            </div>
-            <h3
-              className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${category.gradient}`}
-            >
-              {category.title}
-            </h3>
-          </div>
-
-          {/* Skills List */}
-          <div className="space-y-4">
-            {category.skills.map((skill, skillIndex) => (
+            {activeTab === "skills" && (
               <motion.div
-                key={skillIndex}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 * skillIndex }}
-                className="space-y-2"
+                key="skills"
+                variants={tabContentVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                exit="exit"
               >
-                {/* Skill Name and Level */}
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`font-semibold text-sm ${
-                      theme !== "light" ? "text-gray-200" : "text-gray-800"
-                    }`}
-                  >
-                    {skill.name}
-                  </span>
-                  <span
-                    className={`text-xs font-bold px-2 py-1 rounded ${
-                      theme !== "light"
-                        ? "bg-orange-500/20 text-orange-400"
-                        : "bg-orange-100 text-orange-600"
-                    }`}
-                  >
-                    {skill.level}
-                  </span>
-                </div>
-
-                {/* Progress Bar */}
-                <div
-                  className={`w-full h-1.5 rounded-full overflow-hidden ${
-                    theme !== "light" ? "bg-gray-800" : "bg-gray-300"
-                  }`}
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.proficiency}%` }}
-                    transition={{ duration: 1, delay: 0.2 + skillIndex * 0.1 }}
-                    className={`h-full bg-gradient-to-r ${category.gradient} rounded-full`}
-                  />
-                </div>
+                  {skillCategories.map((category, catIndex) => (
+                    <motion.div
+                      key={catIndex}
+                      variants={cardVariants}
+                      className={`${theme !== "light"
+                          ? "bg-gray-900/50 border-gray-800"
+                          : "bg-gray-100 border-gray-300"
+                        } backdrop-blur-sm rounded-2xl border p-6 overflow-hidden`}
+                    >
+                      {/* Category Header */}
+                      <div className="flex items-center gap-3 mb-6">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center shadow-lg`}
+                        >
+                          <category.icon className="w-6 h-6 text-white" />
+                        </div>
+                        <h3
+                          className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${category.gradient}`}
+                        >
+                          {category.title}
+                        </h3>
+                      </div>
+
+                      {/* Skills List */}
+                      <div className="space-y-4">
+                        {category.skills.map((skill, skillIndex) => (
+                          <motion.div
+                            key={skillIndex}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 * skillIndex }}
+                            className="space-y-2"
+                          >
+                            {/* Skill Name and Level */}
+                            <div className="flex items-center justify-between">
+                              <span
+                                className={`font-semibold text-sm ${theme !== "light" ? "text-gray-200" : "text-gray-800"
+                                  }`}
+                              >
+                                {skill.name}
+                              </span>
+                              <span
+                                className={`text-xs font-bold px-2 py-1 rounded ${theme !== "light"
+                                    ? "bg-orange-500/20 text-orange-400"
+                                    : "bg-orange-100 text-orange-600"
+                                  }`}
+                              >
+                                {skill.level}
+                              </span>
+                            </div>
+
+                            {/* Progress Bar */}
+                            <div
+                              className={`w-full h-1.5 rounded-full overflow-hidden ${theme !== "light" ? "bg-gray-800" : "bg-gray-300"
+                                }`}
+                            >
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${skill.proficiency}%` }}
+                                transition={{ duration: 1, delay: 0.2 + skillIndex * 0.1 }}
+                                className={`h-full bg-gradient-to-r ${category.gradient} rounded-full`}
+                              />
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  </motion.div>
-)}
+            )}
 
             {/* EDUCATION TAB */}
             {activeTab === "education" && (
