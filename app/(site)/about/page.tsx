@@ -30,14 +30,14 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring" as const, stiffness: 100, damping: 12 },
-  },
-};
+// const itemVariants = {
+//   hidden: { opacity: 0, x: -30 },
+//   visible: {
+//     opacity: 1,
+//     x: 0,
+//     transition: { type: "spring" as const, stiffness: 100, damping: 12 },
+//   },
+// };
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -66,24 +66,68 @@ const AboutMe = () => {
   /* ----------------------------------------------------
      SKILLS LIST
   ---------------------------------------------------- */
-  const skills = [
-    { name: "HTML", tech: "Frontend", icon: "🌐", proficiency: 95, projects: 85 },
-    { name: "CSS", tech: "Frontend", icon: "🎨", proficiency: 90, projects: 80 },
-    { name: "JavaScript", tech: "JS", icon: "📜", proficiency: 85, projects: 75 },
-    { name: "TypeScript", tech: "TS", icon: "🔵", proficiency: 80, projects: 65 },
-    { name: "React.js", tech: "React", icon: "⚛️", proficiency: 90, projects: 78 },
-    { name: "Next.js", tech: "Next", icon: "⏭️", proficiency: 85, projects: 70 },
-    { name: "TailwindCSS", tech: "CSS", icon: "🌬️", proficiency: 88, projects: 75 },
-    { name: "Bootstrap", tech: "CSS", icon: "🟣", proficiency: 75, projects: 60 },
-    { name: "ShadCN", tech: "UI", icon: "✨", proficiency: 85, projects: 65 },
-    { name: "Framer Motion", tech: "Animation", icon: "🌀", proficiency: 82, projects: 60 },
-    { name: "MongoDB", tech: "Database", icon: "🍃", proficiency: 78, projects: 55 },
-    { name: "C", tech: "Programming", icon: "🔷", proficiency: 70, projects: 40 },
-    { name: "C++", tech: "Programming", icon: "💠", proficiency: 65, projects: 35 },
-    { name: "Java", tech: "Programming", icon: "☕", proficiency: 75, projects: 45 },
-    { name: "Python", tech: "Programming", icon: "🐍", proficiency: 80, projects: 55 },
-    { name: "MySQL", tech: "Database", icon: "🗄️", proficiency: 78, projects: 50 },
-  ];
+  // const skills = [
+  //   { name: "HTML", tech: "Frontend", icon: "🌐", proficiency: 95, projects: 85 },
+  //   { name: "CSS", tech: "Frontend", icon: "🎨", proficiency: 90, projects: 80 },
+  //   { name: "JavaScript", tech: "JS", icon: "📜", proficiency: 85, projects: 75 },
+  //   { name: "TypeScript", tech: "TS", icon: "🔵", proficiency: 80, projects: 65 },
+  //   { name: "React.js", tech: "React", icon: "⚛️", proficiency: 90, projects: 78 },
+  //   { name: "Next.js", tech: "Next", icon: "⏭️", proficiency: 85, projects: 70 },
+  //   { name: "TailwindCSS", tech: "CSS", icon: "🌬️", proficiency: 88, projects: 75 },
+  //   { name: "Bootstrap", tech: "CSS", icon: "🟣", proficiency: 75, projects: 60 },
+  //   { name: "ShadCN", tech: "UI", icon: "✨", proficiency: 85, projects: 65 },
+  //   { name: "Framer Motion", tech: "Animation", icon: "🌀", proficiency: 82, projects: 60 },
+  //   { name: "MongoDB", tech: "Database", icon: "🍃", proficiency: 78, projects: 55 },
+  //   { name: "C", tech: "Programming", icon: "🔷", proficiency: 70, projects: 40 },
+  //   { name: "C++", tech: "Programming", icon: "💠", proficiency: 65, projects: 35 },
+  //   { name: "Java", tech: "Programming", icon: "☕", proficiency: 75, projects: 45 },
+  //   { name: "Python", tech: "Programming", icon: "🐍", proficiency: 80, projects: 55 },
+  //   { name: "MySQL", tech: "Database", icon: "🗄️", proficiency: 78, projects: 50 },
+  // ];
+
+  /* ----------------------------------------------------
+   SKILLS LIST - CATEGORIZED
+---------------------------------------------------- */
+const skillCategories = [
+  {
+    title: "Frontend",
+    icon: Code2,
+    gradient: "from-cyan-500 to-blue-500",
+    skills: [
+      { name: "REACT", level: "EXPERT", proficiency: 90 },
+      { name: "NEXT.JS", level: "EXPERT", proficiency: 85 },
+      { name: "TYPESCRIPT", level: "EXPERT", proficiency: 80 },
+      { name: "TAILWIND CSS", level: "EXPERT", proficiency: 88 },
+      { name: "FRAMER MOTION", level: "EXPERT", proficiency: 82 },
+      { name: "SHADCN", level: "EXPERT", proficiency: 85 },
+    ],
+  },
+  {
+    title: "Backend",
+    icon: Briefcase,
+    gradient: "from-purple-500 to-pink-500",
+    skills: [
+      { name: "NODE.JS", level: "EXPERT", proficiency: 85 },
+      { name: "EXPRESS", level: "EXPERT", proficiency: 80 },
+      { name: "REST API", level: "EXPERT", proficiency: 80 },
+      { name: "MONGODB", level: "EXPERT", proficiency: 78 },
+      { name: "MONGOOSE", level: "EXPERT", proficiency: 78 },
+      { name: "MYSQL", level: "EXPERT", proficiency: 78 },
+    ],
+  },
+  {
+    title: "Programming",
+    icon: Target,
+    gradient: "from-orange-500 to-rose-500",
+    skills: [
+      { name: "C", level: "EXPERT", proficiency: 70 },
+      { name: "C++", level: "EXPERT", proficiency: 65 },
+      { name: "JAVASCRIPT", level: "EXPERT", proficiency: 85 },
+      { name: "JAVA", level: "EXPERT", proficiency: 75 },
+      { name: "PYTHON", level: "EXPERT", proficiency: 80 },
+    ],
+  },
+];
 
   /* ----------------------------------------------------
      EDUCATION DATA
@@ -91,14 +135,14 @@ const AboutMe = () => {
   const education = [
     {
       degree: "Bachelor of Science in Computer Science & Engineering",
-      institution: "XYZ University",
+      institution: "United International University",
       location: "Dhaka, Bangladesh",
-      duration: "2019 - 2023",
-      cgpa: "3.85/4.00",
+      duration: "2020 - 2024",
+      cgpa: "3.67/4.00",
       achievements: [
-        "Dean's List for 3 consecutive semesters",
+        "Result Based Scholarship awarded 9 consecutive semesters",
         "Best Final Year Project Award",
-        "President of Programming Club"
+        "Junior Executive of APP Forum"
       ],
       courses: [
         "Machine Learning",
@@ -409,68 +453,97 @@ const AboutMe = () => {
           {/* Tab Content */}
           <AnimatePresence mode="wait">
             {/* SKILLS TAB */}
-            {activeTab === "skills" && (
+            {/* SKILLS TAB */}
+{activeTab === "skills" && (
+  <motion.div
+    key="skills"
+    variants={tabContentVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: false, amount: 0.3 }}
+    exit="exit"
+  >
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
+      {skillCategories.map((category, catIndex) => (
+        <motion.div
+          key={catIndex}
+          variants={cardVariants}
+          className={`${
+            theme !== "light"
+              ? "bg-gray-900/50 border-gray-800"
+              : "bg-gray-100 border-gray-300"
+          } backdrop-blur-sm rounded-2xl border p-6 overflow-hidden`}
+        >
+          {/* Category Header */}
+          <div className="flex items-center gap-3 mb-6">
+            <div
+              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${category.gradient} flex items-center justify-center shadow-lg`}
+            >
+              <category.icon className="w-6 h-6 text-white" />
+            </div>
+            <h3
+              className={`text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${category.gradient}`}
+            >
+              {category.title}
+            </h3>
+          </div>
+
+          {/* Skills List */}
+          <div className="space-y-4">
+            {category.skills.map((skill, skillIndex) => (
               <motion.div
-                key="skills"
-                variants={tabContentVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                exit="exit"
+                key={skillIndex}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 * skillIndex }}
+                className="space-y-2"
               >
+                {/* Skill Name and Level */}
+                <div className="flex items-center justify-between">
+                  <span
+                    className={`font-semibold text-sm ${
+                      theme !== "light" ? "text-gray-200" : "text-gray-800"
+                    }`}
+                  >
+                    {skill.name}
+                  </span>
+                  <span
+                    className={`text-xs font-bold px-2 py-1 rounded ${
+                      theme !== "light"
+                        ? "bg-orange-500/20 text-orange-400"
+                        : "bg-orange-100 text-orange-600"
+                    }`}
+                  >
+                    {skill.level}
+                  </span>
+                </div>
 
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                {/* Progress Bar */}
+                <div
+                  className={`w-full h-1.5 rounded-full overflow-hidden ${
+                    theme !== "light" ? "bg-gray-800" : "bg-gray-300"
+                  }`}
                 >
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={index}
-                      variants={itemVariants}
-                      className={`${theme !== "light"
-                        ? "bg-gray-900/50 border-gray-800"
-                        : "bg-gray-100 border-gray-300"
-                        } backdrop-blur-sm rounded-xl border p-4`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{skill.icon}</span>
-                          <span className={`font-semibold ${theme !== "light" ? "text-gray-200" : "text-gray-800"}`}>
-                            {skill.name}
-                          </span>
-                        </div>
-                        <span className={`text-sm font-bold ${theme !== "light" ? "text-cyan-400" : "text-cyan-600"}`}>
-                          {skill.proficiency}%
-                        </span>
-                      </div>
-
-                      {/* Progress Bar */}
-                      <div className={`w-full h-2 rounded-full overflow-hidden ${theme !== "light" ? "bg-gray-800" : "bg-gray-300"
-                        }`}>
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${skill.proficiency}%` }}
-                          transition={{ duration: 1, delay: 0.2 + index * 0.05 }}
-                          className="h-full bg-linear-to-r from-cyan-400 via-blue-500 to-indigo-600 rounded-full"
-                        />
-                      </div>
-
-                      {/* Tech Tag */}
-                      <div className="mt-2">
-                        <span className={`text-xs px-2 py-1 rounded-full ${theme !== "light"
-                          ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                          : "bg-purple-100 text-purple-600 border border-purple-300"
-                          }`}>
-                          {skill.tech}
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: `${skill.proficiency}%` }}
+                    transition={{ duration: 1, delay: 0.2 + skillIndex * 0.1 }}
+                    className={`h-full bg-gradient-to-r ${category.gradient} rounded-full`}
+                  />
+                </div>
               </motion.div>
-            )}
+            ))}
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </motion.div>
+)}
 
             {/* EDUCATION TAB */}
             {activeTab === "education" && (
@@ -523,7 +596,7 @@ const AboutMe = () => {
                         <ul className="space-y-2">
                           {edu.achievements.map((achievement, idx) => (
                             <li key={idx} className={`flex items-start gap-2 ${theme !== "light" ? "text-gray-400" : "text-gray-600"}`}>
-                              <span className="text-green-400 mt-1">•</span>
+                              <span className="text-green-400">•</span>
                               <span>{achievement}</span>
                             </li>
                           ))}
