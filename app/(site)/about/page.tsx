@@ -140,7 +140,7 @@ const AboutMe = () => {
       duration: "2020 - 2024",
       cgpa: "3.67/4.00",
       achievements: [
-        "Result Based Scholarship awarded 9 consecutive semesters",
+        "Result Based Scholarship awarded 9 consecutive trimesters",
         "Best Final Year Project Award",
         "Junior Executive of APP Forum"
       ],
@@ -175,10 +175,10 @@ const AboutMe = () => {
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React", "Framer Motion"]
     },
     {
-      title: "Frontend Developer Intern",
-      company: "ABC Tech Solutions",
+      title: "Frontend Developer",
+      company: "Octopi Digital LLC",
       location: "Dhaka, Bangladesh",
-      duration: "Jun 2023 - Dec 2023",
+      duration: "6 Months",
       type: "Internship",
       responsibilities: [
         "Assisted in developing customer-facing web applications",
@@ -673,7 +673,7 @@ const AboutMe = () => {
                         <ul className="space-y-2">
                           {exp.responsibilities.map((responsibility, idx) => (
                             <li key={idx} className={`flex items-start gap-2 ${theme !== "light" ? "text-gray-400" : "text-gray-600"}`}>
-                              <span className="text-purple-400 mt-1">•</span>
+                              <span className="text-purple-400 ">•</span>
                               <span>{responsibility}</span>
                             </li>
                           ))}
