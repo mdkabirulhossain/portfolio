@@ -53,11 +53,11 @@ export default function Navbar() {
         >
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/Kabirul-logo.png"
+              src="/images/logo2.png"
               alt="Md. Kabirul Hossain Logo"
               width={180}
               height={60}
-              className="h-12 sm:h-16 w-auto object-contain"
+              className="h-12 sm:h-18 w-auto object-contain"
               priority
             />
           </Link>
