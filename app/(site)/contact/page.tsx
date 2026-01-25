@@ -47,7 +47,7 @@ const Contact = () => {
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState({ type: "", message: "" });
+  const [, setStatus] = useState({ type: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [mounted, setMounted] = React.useState(false);
 
