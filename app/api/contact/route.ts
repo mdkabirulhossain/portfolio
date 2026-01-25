@@ -9,15 +9,15 @@ export async function POST(request: NextRequest) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Your Gmail
-        pass: process.env.EMAIL_PASS, // Your App Password
+        user: process.env.EMAIL_USER,  
+        pass: process.env.EMAIL_PASS,  
       },
     });
 
     // Email options
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'mdkabirulhossainj@gmail.com', // Your email
+      to: 'mdkabirulhossainj@gmail.com',  
       subject: `Portfolio Contact: ${subject}`,
       html: `
         <h2>Portflio Contact Form Submission</h2>
