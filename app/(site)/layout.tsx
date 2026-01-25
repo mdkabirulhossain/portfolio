@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import '../../app/globals.css';
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
-
-
+import {Toaster} from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -23,8 +22,9 @@ export default function RootLayout({
           {/* Navbar appears on all pages */}
           <Navbar />
 
-          <main className="sm:pt-10"> {/* Add margin so content does not hide behind navbar */}
+          <main className="sm:pt-10"> 
             {children}
+            <Toaster position="top-right" richColors/>
           </main>
 
         </ThemeProvider>

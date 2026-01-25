@@ -15,9 +15,9 @@ import {
   Twitter,
   Globe,
   CheckCircle2,
-  AlertCircle,
   Loader2
 } from "lucide-react";
+import { toast } from "sonner";
 
 /* ----------------------------------------------------
    Motion Variants
@@ -126,31 +126,45 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: "", message: "" });
+ const handleSubmit = async (e: any) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setStatus({ type: "", message: "" });
 
-    // Simulate form submission (Replace with your actual API call)
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
-      // Success
-      setStatus({
-        type: "success",
-        message: "Thank you! Your message has been sent successfully. I'll get back to you soon!",
+    const data = await response.json();
+
+    if (response.ok) {
+      // Show success toast
+      toast.success('Message Sent Successfully!', {
+        description: "Thank you! I'll get back to you soon.",
+        duration: 5000,
       });
+      
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch {
-      // Error
-      setStatus({
-        type: "error",
-        message: "Oops! Something went wrong. Please try again or email me directly.",
-      });
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      throw new Error(data.message || 'Failed to send');
     }
-  };
+  } catch (error) {
+    console.error('Error:', error);
+    
+    // Show error toast
+    toast.error('Failed to Send Message', {
+      description: 'Please try again or email me directly.',
+      duration: 5000,
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <div
@@ -344,25 +358,6 @@ const Contact = () => {
                   placeholder="Tell me about your project..."
                 />
               </div>
-
-              {/* Status Message */}
-              {status.message && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className={`flex items-start gap-3 p-4 rounded-xl ${status.type === "success"
-                    ? "bg-green-500/10 border-green-500/30 text-green-400"
-                    : "bg-red-500/10 border-red-500/30 text-red-400"
-                    } border`}
-                >
-                  {status.type === "success" ? (
-                    <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                  )}
-                  <p className="text-sm">{status.message}</p>
-                </motion.div>
-              )}
 
               {/* Submit Button */}
               <motion.button
