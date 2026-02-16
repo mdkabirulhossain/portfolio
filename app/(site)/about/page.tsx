@@ -255,7 +255,7 @@ const AboutMe = () => {
     { id: "skills", label: "Skills", icon: Code2 },
     { id: "education", label: "Education", icon: GraduationCap },
     { id: "experience", label: "Experience", icon: Briefcase },
-    { id: "certifications", label: "Certifications", icon: Award },
+    // { id: "certifications", label: "Certifications", icon: Award },
   ];
   if (!mounted) {
     return <div className="min-h-screen bg-transparent" />;
