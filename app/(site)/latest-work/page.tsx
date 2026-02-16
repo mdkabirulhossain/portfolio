@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
@@ -13,10 +13,19 @@ import {
   Filter,
   X,
   ChevronRight,
+  ChevronLeft,
   Layers,
   Zap,
   Globe
 } from "lucide-react";
+
+import solenne from "../../../public/images/project/solenne_thumbnil.png";
+import solenne1 from "../../../public/images/project/solenne_img1.png";
+import solenne2 from "../../../public/images/project/solenne_img2.png";
+import noborup from "../../../public/images/project/Noborup_thumbnil.png";
+import noborup1 from "../../../public/images/project/Noborup_img1.png";
+import noborup2 from "../../../public/images/project/Noborup_img2.png";
+
 
 /* ----------------------------------------------------
    Motion Variants
@@ -40,7 +49,8 @@ interface Project {
   title: string;
   shortDescription: string;
   fullDescription: string;
-  image: string;
+  image: string | StaticImageData;
+  gallery?: (string | StaticImageData)[];
   category: string;
   technologies: string[];
   liveDemo: string;
@@ -58,14 +68,36 @@ const LatestProjects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [showAll, setShowAll] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () => {
+    if (selectedProject?.gallery) {
+      setCurrentSlide((prev) =>
+        prev === selectedProject.gallery!.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  const prevSlide = () => {
+    if (selectedProject?.gallery) {
+      setCurrentSlide((prev) =>
+        prev === 0 ? selectedProject.gallery!.length - 1 : prev - 1
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (selectedProject) {
+      setCurrentSlide(0);
+    }
+  }, [selectedProject]);
 
   // 3. Set mounted to true on load
   useEffect(() => {
     setMounted(true);
   }, []);
-  /* ----------------------------------------------------
-     PROJECTS DATA - CUSTOMIZE THIS!
-  ---------------------------------------------------- */
+
+
   const projects: Project[] = [
     {
       id: 1,
@@ -73,6 +105,7 @@ const LatestProjects = () => {
       shortDescription: "Full-stack e-commerce solution with payment integration",
       fullDescription: "A comprehensive e-commerce platform built with the MERN stack, featuring user authentication, product management, shopping cart, payment gateway integration with Stripe, order tracking, and admin dashboard for inventory management.",
       image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80",
+      gallery: [noborup, noborup1, noborup2],
       category: "Full-stack",
       technologies: ["React.js", "TypeScript", "MongoDB", "Stripe", "Tailwind CSS"],
       liveDemo: "https://noborupclient.vercel.app/",
@@ -93,7 +126,8 @@ const LatestProjects = () => {
       title: "Solenne",
       shortDescription: "A private lifestyle membershipfor living well in Dubai.",
       fullDescription: "An intelligent task management application that uses machine learning to prioritize tasks, suggest optimal scheduling, and provide productivity insights. Built with React and integrated with OpenAI API.",
-      image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80",
+      image: solenne,
+      gallery: [solenne, solenne1, solenne2],
       category: "Frontend",
       technologies: ["React", "TypeScript", "OpenAI API", "Framer Motion", "ShadCN"],
       liveDemo: "https://solenneuae.com/",
@@ -473,16 +507,88 @@ const LatestProjects = () => {
                 </motion.button>
 
                 {/* Modal Image - USING NEXT.JS IMAGE */}
-                <div className="relative h-64 md:h-80 overflow-hidden rounded-t-3xl">
-                  <Image
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 896px"
-                    priority
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${selectedProject.gradient} opacity-20`} />
+                {/* Modal Image Slider */}
+                <div className="relative h-64 md:h-80 overflow-hidden rounded-t-3xl group">
+                  {selectedProject.gallery && selectedProject.gallery.length > 0 ? (
+                    <>
+                      {/* Slider Images */}
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={currentSlide}
+                          initial={{ opacity: 0, x: 100 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -100 }}
+                          transition={{ duration: 0.3 }}
+                          className="relative h-full w-full"
+                        >
+                          <Image
+                            src={selectedProject.gallery[currentSlide]}
+                            alt={`${selectedProject.title} - Image ${currentSlide + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 896px"
+                            priority
+                          />
+                          <div className={`absolute inset-0 bg-gradient-to-t ${selectedProject.gradient} opacity-20`} />
+                        </motion.div>
+                      </AnimatePresence>
+
+                      {/* Navigation Arrows */}
+                      {selectedProject.gallery.length > 1 && (
+                        <>
+                          <motion.button
+                            onClick={prevSlide}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className={`absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full ${theme !== "light"
+                                ? "bg-gray-900/80 hover:bg-gray-800"
+                                : "bg-white/80 hover:bg-gray-100"
+                              } backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10`}
+                          >
+                            <ChevronLeft className="w-6 h-6" />
+                          </motion.button>
+
+                          <motion.button
+                            onClick={nextSlide}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            className={`absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full ${theme !== "light"
+                                ? "bg-gray-900/80 hover:bg-gray-800"
+                                : "bg-white/80 hover:bg-gray-100"
+                              } backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10`}
+                          >
+                            <ChevronRight className="w-6 h-6" />
+                          </motion.button>
+
+                          {/* Slide Indicators */}
+                          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                            {selectedProject.gallery.map((_, idx) => (
+                              <motion.button
+                                key={idx}
+                                onClick={() => setCurrentSlide(idx)}
+                                whileHover={{ scale: 1.2 }}
+                                className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentSlide
+                                    ? `bg-gradient-to-r ${selectedProject.gradient} w-8`
+                                    : theme !== "light"
+                                      ? "bg-gray-400"
+                                      : "bg-gray-600"
+                                  }`}
+                              />
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <Image
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 896px"
+                      priority
+                    />
+                  )}
                 </div>
 
                 {/* Modal Content */}
