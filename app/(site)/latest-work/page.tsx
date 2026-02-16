@@ -25,6 +25,16 @@ import solenne2 from "../../../public/images/project/solenne_img2.png";
 import noborup from "../../../public/images/project/Noborup_thumbnil.png";
 import noborup1 from "../../../public/images/project/Noborup_img1.png";
 import noborup2 from "../../../public/images/project/Noborup_img2.png";
+import brainybox from "../../../public/images/project/BrainyBoxThumbnil.png";
+import brainybox1 from "../../../public/images/project/BrainyBoximg1.png";
+import brainybox2 from "../../../public/images/project/BrainyBoximg2.png";
+import dashboard from "../../../public/images/project/foodDeliveryThumbnil.png";
+import dashboard1 from "../../../public/images/project/foodDeliveryimg1.png";
+import dashboard2 from "../../../public/images/project/foodDeliveryimg2.png";
+import eLearning from "../../../public/images/project/E-LearningThumbnil.png";
+import eLearning1 from "../../../public/images/project/E-LearningImage1.png";
+import eLearning2 from "../../../public/images/project/E-LearningImage2.png";
+
 
 
 /* ----------------------------------------------------
@@ -124,56 +134,58 @@ const LatestProjects = () => {
     {
       id: 2,
       title: "Solenne",
-      shortDescription: "A private lifestyle membershipfor living well in Dubai.",
-      fullDescription: "An intelligent task management application that uses machine learning to prioritize tasks, suggest optimal scheduling, and provide productivity insights. Built with React and integrated with OpenAI API.",
+      shortDescription: "A private lifestyle membership for living well in Dubai.",
+      fullDescription: "A premium lifestyle membership platform connecting members to Dubai's most considered wellness and lifestyle destinations. Features digital membership management, partner network integration, exclusive member benefits, and curated wellness experiences across the city.",
       image: solenne,
       gallery: [solenne, solenne1, solenne2],
       category: "Frontend",
-      technologies: ["React", "TypeScript", "OpenAI API", "Framer Motion", "ShadCN"],
+      technologies: ["React", "TypeScript", "Framer Motion", "ShadCN", "Next.js"],
       liveDemo: "https://solenneuae.com/",
       github: "#",
-      date: "November 2025",
+      date: "November 2024",
       duration: "2 months",
-      featured: false,
+      featured: true,
       gradient: "from-cyan-500 to-blue-500",
       highlights: [
-        "AI-powered task prioritization",
-        "Smart scheduling suggestions",
-        "Productivity analytics dashboard",
-        "Collaborative team features"
+        "Digital membership ID system with partner network integration",
+        "Exclusive access to wellness & lifestyle destinations across Dubai",
+        "Private member gatherings and curated partner experiences",
+        "Member newsletter with online privileges and partner offers"
       ]
     },
     {
       id: 3,
-      title: "Real-Time Chat App",
-      shortDescription: "WebSocket-based messaging platform",
-      fullDescription: "A real-time messaging application with features like group chats, file sharing, message reactions, and online status. Built using Socket.io for real-time communication and MongoDB for message storage.",
-      image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?w=800&q=80",
+      title: "BrainyBox",
+      shortDescription: "Designed a web platform focused on early childhood (1-4 years) learning and development ",
+      fullDescription: " Included an e-commerce section to sell educational toys for children's growth and development and a blog section to share parenting tips and educational content.",
+      image: brainybox,
+      gallery: [brainybox, brainybox1, brainybox2],
       category: "Full-stack",
-      technologies: ["Node.js", "Socket.io", "React", "MongoDB", "Express"],
-      liveDemo: "https://chat-app-demo.com",
-      github: "https://github.com/yourusername/chat-app",
+      technologies: ["Node.js", "React", "MongoDB", "Express"],
+      liveDemo: "https://brainyboxbd.com/",
+      github: "#",
       date: "October 2024",
       duration: "6 weeks",
       featured: true,
       gradient: "from-green-500 to-emerald-500",
       highlights: [
-        "Real-time messaging with Socket.io",
-        "Group chat functionality",
-        "File and image sharing",
-        "Message encryption for security"
+        "Online store for educational toys",
+        "Blog for parenting tips and educational content",
+        "Interactive learning resources for early childhood development",
+        "User-friendly interface for parents to explore products and resources"
       ]
     },
     {
       id: 4,
-      title: "Portfolio Dashboard",
+      title: "Food Delivery Management Dashboard",
       shortDescription: "Interactive portfolio analytics dashboard",
       fullDescription: "A modern portfolio website with an integrated analytics dashboard showing visitor metrics, project views, and engagement statistics. Built with Next.js 14 and features server-side rendering for optimal performance.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      gallery: [dashboard, dashboard1, dashboard2],
       category: "Frontend",
       technologies: ["Next.js", "TypeScript", "Recharts", "Tailwind CSS", "Framer Motion"],
-      liveDemo: "https://portfolio-dashboard.com",
-      github: "https://github.com/yourusername/portfolio",
+      liveDemo: "#",
+      github: "#",
       date: "September 2024",
       duration: "1 month",
       featured: false,
@@ -187,46 +199,47 @@ const LatestProjects = () => {
     },
     {
       id: 5,
-      title: "Weather Forecast App",
-      shortDescription: "Beautiful weather app with 7-day forecasts",
-      fullDescription: "A sleek weather application that provides detailed weather forecasts, including temperature, humidity, wind speed, and precipitation. Features location-based weather detection and beautiful animated backgrounds.",
-      image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80",
-      category: "Frontend",
+      title: "E-Learning Platform",
+      shortDescription: "Interactive educational platform for online learning",
+      fullDescription: "An interactive e-learning platform that provides courses, quizzes, and progress tracking for students. Features a modern UI with responsive design and integrated video streaming capabilities.",
+      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
+      gallery: [eLearning, eLearning1, eLearning2],
+      category: "Full-stack",
       technologies: ["React", "Weather API", "CSS3", "Geolocation API"],
-      liveDemo: "https://weather-app-demo.com",
-      github: "https://github.com/yourusername/weather",
-      date: "August 2024",
+      liveDemo: "https://e-learning-client-tawny.vercel.app/",
+      github: "https://github.com/mdkabirulhossain/E-Learning.git",
+      date: "August 2025",
       duration: "3 weeks",
       featured: false,
       gradient: "from-blue-500 to-cyan-500",
       highlights: [
-        "7-day weather forecasts",
-        "Location-based detection",
-        "Animated weather backgrounds",
-        "Hourly weather updates"
+        "Interactive video streaming",
+        "Progress tracking",
+        "Interactive quizzes",
+        "Responsive design"
       ]
     },
-    {
-      id: 6,
-      title: "Fitness Tracker",
-      shortDescription: "Track workouts and monitor progress",
-      fullDescription: "A comprehensive fitness tracking application that helps users log workouts, track calories, monitor progress with charts, and set fitness goals. Includes workout plans and nutritional guidance.",
-      image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80",
-      category: "Full-stack",
-      technologies: ["React", "Node.js", "MongoDB", "Chart.js", "Express"],
-      liveDemo: "https://fitness-tracker.com",
-      github: "https://github.com/yourusername/fitness",
-      date: "July 2024",
-      duration: "2 months",
-      featured: false,
-      gradient: "from-red-500 to-orange-500",
-      highlights: [
-        "Workout logging and tracking",
-        "Calorie and nutrition monitoring",
-        "Progress visualization charts",
-        "Custom workout plan creation"
-      ]
-    },
+    // {
+    //   id: 6,
+    //   title: "Fitness Tracker",
+    //   shortDescription: "Track workouts and monitor progress",
+    //   fullDescription: "A comprehensive fitness tracking application that helps users log workouts, track calories, monitor progress with charts, and set fitness goals. Includes workout plans and nutritional guidance.",
+    //   image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80",
+    //   category: "Full-stack",
+    //   technologies: ["React", "Node.js", "MongoDB", "Chart.js", "Express"],
+    //   liveDemo: "https://fitness-tracker.vercel.app/",
+    //   github: "https://github.com/mdkabirulhossain/Fitness-Tracker.git",
+    //   date: "July 2024",
+    //   duration: "2 months",
+    //   featured: false,
+    //   gradient: "from-red-500 to-orange-500",
+    //   highlights: [
+    //     "Workout logging and tracking",
+    //     "Calorie and nutrition monitoring",
+    //     "Progress visualization charts",
+    //     "Custom workout plan creation"
+    //   ]
+    // },
   ];
 
   const categories = ["all", "Full-stack", "Frontend"];
@@ -420,7 +433,7 @@ const LatestProjects = () => {
                       className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg font-semibold transition-all duration-300 bg-gradient-to-r ${project.gradient} text-white shadow-lg hover:shadow-xl`}
                     >
                       <Globe className="w-4 h-4" />
-                      Live Demo
+                      Live
                     </motion.a>
                     <motion.a
                       href={project.github}
@@ -529,7 +542,7 @@ const LatestProjects = () => {
                             sizes="(max-width: 768px) 100vw, 896px"
                             priority
                           />
-                          <div className={`absolute inset-0 bg-gradient-to-t ${selectedProject.gradient} opacity-20`} />
+                          {/* <div className={`absolute inset-0 bg-gradient-to-t ${selectedProject.gradient} opacity-20`} /> */}
                         </motion.div>
                       </AnimatePresence>
 
@@ -541,8 +554,8 @@ const LatestProjects = () => {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             className={`absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full ${theme !== "light"
-                                ? "bg-gray-900/80 hover:bg-gray-800"
-                                : "bg-white/80 hover:bg-gray-100"
+                              ? "bg-gray-900/80 hover:bg-gray-800"
+                              : "bg-white/80 hover:bg-gray-100"
                               } backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10`}
                           >
                             <ChevronLeft className="w-6 h-6" />
@@ -553,8 +566,8 @@ const LatestProjects = () => {
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             className={`absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full ${theme !== "light"
-                                ? "bg-gray-900/80 hover:bg-gray-800"
-                                : "bg-white/80 hover:bg-gray-100"
+                              ? "bg-gray-900/80 hover:bg-gray-800"
+                              : "bg-white/80 hover:bg-gray-100"
                               } backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10`}
                           >
                             <ChevronRight className="w-6 h-6" />
@@ -568,10 +581,10 @@ const LatestProjects = () => {
                                 onClick={() => setCurrentSlide(idx)}
                                 whileHover={{ scale: 1.2 }}
                                 className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentSlide
-                                    ? `bg-gradient-to-r ${selectedProject.gradient} w-8`
-                                    : theme !== "light"
-                                      ? "bg-gray-400"
-                                      : "bg-gray-600"
+                                  ? `bg-gradient-to-r ${selectedProject.gradient} w-8`
+                                  : theme !== "light"
+                                    ? "bg-gray-400"
+                                    : "bg-gray-600"
                                   }`}
                               />
                             ))}
@@ -669,7 +682,7 @@ const LatestProjects = () => {
                       className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 bg-gradient-to-r ${selectedProject.gradient} text-white shadow-lg hover:shadow-xl`}
                     >
                       <ExternalLink className="w-5 h-5" />
-                      View Live Demo
+                      View Live
                     </motion.a>
                     <motion.a
                       href={selectedProject.github}
